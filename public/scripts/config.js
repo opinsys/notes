@@ -34,6 +34,7 @@ require.config({
     "socket.io": "vendor/socket.io",
     "backbone.io": "vendor/backbone.io",
     "coffee-script": "vendor/coffee-script",
+    "backbone.sharedcollection": "vendor/backbone.sharedcollection/src/backbone.sharedcollection",
     "spin": "vendor/spin"
   }
 });

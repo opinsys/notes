@@ -1,43 +1,36 @@
 define [
   "jquery"
   "backbone"
-  "backbone.io"
+  "cs!app/views/timeline"
+  "cs!app/models/timeline_collection"
+  "cs!app/utils/unwraperr"
 ], (
   $
   Backbone
-  backboneio
+  Timeline
+  TimelineCollection
+  unwraperr
 )->
 
-  console.log "hello"
-  Backbone.io.connect()
+  window.timeline = new TimelineCollection [],
+    collectionId: "main"
 
-  class MyCollection extends Backbone.Collection
-
-
-    constructor: ->
-      @backend =
-        name: "basic"
-        channel: "foo"
-
-      super
-      @bindBackend()
-
-  class View extends Backbone.View
-
-    constructor: ->
-      super
-
-      @collection.on "change", =>
-        @render()
-
-    render: ->
-      "<p>value: #{ @collection.first()?.get "value" }</p>"
+  view = new Timeline
+    collection: timeline
 
 
-  window.coll = new MyCollection
+  sharejs.open "notes", "json", unwraperr (err, doc) ->
 
-  view = new View
-    collection: coll
+    throw err if err
+
+    timeline.setDoc(doc)
+
+    timeline.fetch
+      error: (err) ->
+        console.log "ERER", err
+
+      success: (foo) ->
+        console.log "Connected sharejs!", foo
 
   view.render()
   $("body").append view.el

@@ -1,23 +1,21 @@
 
 http = require('http')
-backboneio = require('backbone.io')
 express = require "express"
 stylus = require "stylus"
 nib = require "nib"
+sharejs = require('share').server
 
 app = express()
 
 server = http.createServer(app)
-
-
-backend = backboneio.createBackend()
-backend.use(backboneio.middleware.memoryStore())
-
-backboneio.listen server, mybackend: backend
+sharejs.attach app,
+  db:
+    type: "none"
 
 app.set('view engine', 'hbs')
 
 app.configure "development", ->
+  require("yalr")()
 
   compile = (str, path) ->
     stylus(str)
