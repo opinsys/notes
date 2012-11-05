@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link rel="stylesheet" href="/scripts/vendor/tests/mocha.css" />
+  <style type="text/css" media="all">
+    #docs {
+      font-size: small;
+    }
+  </style>
+</head>
+<body>
+  <a href="#" onclick="window.location.reload()">Restart</a>
+  <div id=docs>
+    <h1>Docs</h1>
+    <ul>
+      <li><a href="http://visionmedia.github.com/mocha/">Mocha</a></li>
+      <li><a href="http://chaijs.com/api/bdd/">Chai assertions</a></li>
+      <li><a href="http://chaijs.com/plugins/chai-jquery">Chai jQuery</a></li>
+    </ul>
+  </div>
+  <div id="mocha"></div>
+  <script src="scripts/vendor/tests/mocha.js"></script>
+  <script src="scripts/vendor/tests/mocha-yeti-adaptor.js"></script>
+  <script src="scripts/vendor/jquery.js"></script>
+  <script src="scripts/vendor/tests/chai.js"></script>
+  <script src="scripts/vendor/tests/chai-jquery.js"></script>
+
+  <script>window.require = { baseUrl: "scripts/" };</script>
+  <script src="scripts/require.js"></script>
+  <script src="scripts/config.js"></script>
+
+  <script>
+    window.expect = chai.expect;
+    mocha.setup('bdd');
+    require([
+        "cs!tests/profile_view.test",
+        "cs!tests/logout_view.test",
+        "cs!tests/menulayout.test",
+        "cs!tests/allitems_collection.test",
+        "cs!tests/menuitem_view.test",
+        "cs!tests/menumodel.test"
+    ], function() {
+        var runner = mocha.run();
+        BUNYIP.hookup(runner);
+    });
+  </script>
+  <a href="#" onclick="window.location.reload()">Restart</a>
+</body>
+</html>
