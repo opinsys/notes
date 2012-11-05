@@ -1,11 +1,6 @@
+# Tool for unwraping errors from error eating library code
 define [], ->
-
   return (fn) -> (args...) ->
-
-    try
-      return fn args...
-    catch err
-      setTimeout ->
-        throw err
-      , 1
-
+    setTimeout ->
+      fn args...
+    , 0
