@@ -1,0 +1,24 @@
+{
+  "version": "0.1.0",
+  "name": "notes",
+  "private": true,
+  "description": "Opinsys Notes",
+  "author": "Esa-Matti Suuronen <esa-matti.suuronen@opinsys.fi>",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/opinsys/notes.git"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "coffee-script": "",
+    "express": "",
+    "stylus": "",
+    "nib": "",
+    "share": ""
+  },
+  "devDependecies": {
+    "yalr": ""
+  }
+}
