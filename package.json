@@ -17,7 +17,8 @@
     "stylus": "",
     "nib": "",
     "hbs": "",
-    "share": ""
+    "share": "",
+    "scraper": ""
   },
   "devDependecies": {
     "yalr": ""
