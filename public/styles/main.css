@@ -89,15 +89,7 @@ td {
 a img {
   border: none;
 }
-.bb-timeline h1 {
-  font-size: 300%;
-  color: #00f;
-}
-.bb-timeline p {
-  color: #f00;
-}
 .bb-timeline .item-container {
-  border: 1px solid #000;
   top: 100px;
   bottom: 100px;
   position: absolute;
@@ -108,11 +100,30 @@ a img {
   position: absolute;
   bottom: 0px;
 }
+.bb-timeline h1 {
+  font-size: 300%;
+  color: #00f;
+}
+.bb-timeline .item-container {
+  border: 1px solid #000;
+}
+.bb-timeline .send-form-container {
+  border: 1px solid #ffa500;
+}
 .bb-send-form button {
+  display: block;
+}
+.bb-send-form button {
+  background-color: #0ff;
+}
+.bb-text-item {
   display: block;
 }
 .bb-text-item {
   font-size: 20pt;
+}
+.bb-text-item p {
+  color: #f00;
 }
 .bb-text-item .created {
   color: #008000;
