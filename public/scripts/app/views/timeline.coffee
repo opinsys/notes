@@ -13,6 +13,7 @@ define [
   TextItem
 ) ->
   class Timeline extends Layout
+    className: "bb-timeline"
     template: template
 
     constructor: ->
