@@ -37,9 +37,10 @@ app.configure ->
   app.use(express.bodyParser({}))
   app.use express.static __dirname + "/public"
 
+
 app.get "/", (req, res) -> res.render "landing"
 app.post "/", (req, res) -> res.redirect "/notes/" + req.body.name
-
+app.post "/linkpreview", require "./routes/linkpreview"
 
 app.get "/notes/*", (req, res) ->
   res.render "notes",
