@@ -100,6 +100,15 @@ a img {
   position: absolute;
   bottom: 0px;
 }
+.bb-send-form button {
+  display: block;
+}
+.bb-text-item {
+  display: block;
+}
+.bb-send-form button {
+  background-color: #0ff;
+}
 .bb-timeline h1 {
   font-size: 300%;
   color: #00f;
@@ -109,15 +118,6 @@ a img {
 }
 .bb-timeline .send-form-container {
   border: 1px solid #ffa500;
-}
-.bb-send-form button {
-  display: block;
-}
-.bb-send-form button {
-  background-color: #0ff;
-}
-.bb-text-item {
-  display: block;
 }
 .bb-text-item {
   font-size: 20pt;
