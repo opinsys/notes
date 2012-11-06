@@ -19,13 +19,19 @@ define [
     constructor: ->
       super
 
-      @_setView ".sendform-container", new SendForm
+      @_setView ".send-form-container", new SendForm
         collection: @collection
 
       @bindTo @collection, "add change", =>
-        console.log "got add or chacnge"
-        @_setView ".item-container", @collection.map (model) =>
-          new TextItem
-            model: model
+        @setItems()
         @render()
+
+      @setItems()
+
+    setItems: ->
+      @collection.sort()
+      @_setView ".item-container", @collection.map (model) =>
+        console.log "rendering", model.get "text"
+        new TextItem
+          model: model
 
