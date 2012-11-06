@@ -16,6 +16,7 @@
     "express": "",
     "stylus": "",
     "nib": "",
+    "hbs": "",
     "share": ""
   },
   "devDependecies": {
