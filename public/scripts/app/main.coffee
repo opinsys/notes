@@ -1,19 +1,28 @@
 define [
   "jquery"
   "backbone"
+  "uri"
+
   "cs!app/views/timeline"
   "cs!app/models/timeline_collection"
   "cs!app/utils/unwraperr"
 ], (
   $
   Backbone
+  uri
+
   Timeline
   TimelineCollection
   unwraperr
-)->
+)-> -> $ ->
+
+  url = uri.parse(window.location.href)
+  id = url.path.match(/\/notes\/(.+)$/)?[1]
+  if not id
+    throw new Error "Bad url"
 
   window.timeline = new TimelineCollection [],
-    collectionId: "main"
+    collectionId: id
 
   view = new Timeline
     collection: timeline

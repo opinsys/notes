@@ -7,6 +7,11 @@ sharejs = require('share').server
 
 app = express()
 
+PRODUCTION = null
+app.configure "development", -> PRODUCTION = false
+app.configure "production", -> PRODUCTION = true
+
+
 server = http.createServer(app)
 sharejs.attach app,
   db:
@@ -29,8 +34,11 @@ app.configure "development", ->
 
 app.use express.static __dirname + "/public"
 
-
 app.get "/", (req, res) ->
-  res.render "index", layout: false
+  res.render "landing"
+
+app.get "/notes/*", (req, res) ->
+  res.render "notes",
+    production: PRODUCTION
 
 server.listen 3000, -> console.log "listening on 3000"

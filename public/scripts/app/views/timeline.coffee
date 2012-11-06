@@ -22,9 +22,6 @@ define [
       @_setView ".sendform-container", new SendForm
         collection: @collection
 
-      @collection.on "add", ->
-        console.log "GOT ADD!"
-
       @bindTo @collection, "add change", =>
         console.log "got add or chacnge"
         @_setView ".item-container", @collection.map (model) =>
