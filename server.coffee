@@ -11,13 +11,11 @@ PRODUCTION = null
 app.configure "development", -> PRODUCTION = false
 app.configure "production", -> PRODUCTION = true
 
-
 server = http.createServer(app)
 sharejs.attach app,
   db:
     type: "none"
 
-app.set('view engine', 'hbs')
 
 app.configure "development", ->
   require("yalr")()
@@ -32,10 +30,16 @@ app.configure "development", ->
     compile: compile
     src: __dirname + "/public"
 
-app.use express.static __dirname + "/public"
+app.configure ->
 
-app.get "/", (req, res) ->
-  res.render "landing"
+  app.set('view engine', 'hbs')
+  # app.use app.use(express.bodyParser())
+  app.use(express.bodyParser({}))
+  app.use express.static __dirname + "/public"
+
+app.get "/", (req, res) -> res.render "landing"
+app.post "/", (req, res) -> res.redirect "/notes/" + req.body.name
+
 
 app.get "/notes/*", (req, res) ->
   res.render "notes",
