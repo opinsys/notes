@@ -17,8 +17,15 @@ sharejs.attach app,
     type: "none"
 
 
+yalrConfig = null
 app.configure "development", ->
-  require("yalr")()
+
+  yalrConfig = require("yalr")(
+    path: [
+      "public"
+      "views"
+    ]
+  )
 
   compile = (str, path) ->
     stylus(str)
@@ -37,12 +44,15 @@ app.configure ->
   app.use express.static __dirname + "/public"
 
 
-app.get "/", (req, res) -> res.render "landing"
+app.get "/", (req, res) ->
+  res.render "landing",
+    yalrConfig: yalrConfig
+
 app.post "/", (req, res) -> res.redirect "/notes/" + req.body.name
 app.post "/linkpreview", require "./routes/linkpreview"
 
 app.get "/notes/*", (req, res) ->
   res.render "notes",
-    production: PRODUCTION
+    yalrConfig: yalrConfig
 
 server.listen 3000, -> console.log "listening on 3000"
