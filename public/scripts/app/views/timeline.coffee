@@ -4,7 +4,7 @@ define [
   "cs!app/views/sendform"
   "hbs!app/templates/timeline"
 
-  "cs!app/views/textitem"
+  "cs!app/views/text-item"
 ], (
   Layout
 

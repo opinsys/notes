@@ -35,17 +35,16 @@
     window.expect = chai.expect;
     mocha.setup('bdd');
     require([
-        "cs!tests/profile_view.test",
-        "cs!tests/logout_view.test",
-        "cs!tests/menulayout.test",
-        "cs!tests/allitems_collection.test",
-        "cs!tests/menuitem_view.test",
-        "cs!tests/menumodel.test"
+        "cs!tests/parseurls.test"
     ], function() {
         var runner = mocha.run();
         BUNYIP.hookup(runner);
     });
   </script>
   <a href="#" onclick="window.location.reload()">Restart</a>
+  <script>document.write('<script src="http://'
+      + (location.host || 'localhost').split(':')[0]
+      + ':35729/livereload.js?snipver=1"></'
+      + 'script>')</script>
 </body>
 </html>

@@ -90,12 +90,22 @@ a img {
   border: none;
 }
 .bb-timeline h1 {
-  font-size: 200%;
+  font-size: 300%;
   color: #00f;
 }
 .bb-timeline p {
   color: #f00;
 }
+.bb-timeline .send-form-container {
+  position: absolute;
+  bottom: 0px;
+}
 .bb-send-form button {
   display: block;
+}
+.bb-text-item {
+  font-size: 20pt;
+}
+.bb-text-item .created {
+  color: #008000;
 }
