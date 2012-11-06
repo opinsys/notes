@@ -24,10 +24,6 @@ define [
   window.timeline = new TimelineCollection [],
     collectionId: id
 
-  view = new Timeline
-    collection: timeline
-
-
   sharejs.open "notes", "json", unwraperr (err, doc) ->
 
     throw err if err
@@ -41,7 +37,9 @@ define [
       success: (foo) ->
         console.log "Connected sharejs!", foo
 
-  view.render()
-  $("body").append view.el
+        view = new Timeline
+          collection: timeline
+        view.render()
+        $("body").append view.el
 
 

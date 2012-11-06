@@ -33,7 +33,6 @@ app.configure "development", ->
 app.configure ->
 
   app.set('view engine', 'hbs')
-  # app.use app.use(express.bodyParser())
   app.use(express.bodyParser({}))
   app.use express.static __dirname + "/public"
 

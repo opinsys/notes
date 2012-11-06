@@ -96,6 +96,14 @@ a img {
 .bb-timeline p {
   color: #f00;
 }
+.bb-timeline .item-container {
+  border: 1px solid #000;
+  top: 100px;
+  bottom: 100px;
+  position: absolute;
+  overflow: auto;
+  width: 80%;
+}
 .bb-timeline .send-form-container {
   position: absolute;
   bottom: 0px;

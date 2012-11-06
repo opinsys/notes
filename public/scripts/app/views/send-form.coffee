@@ -19,5 +19,6 @@ define [
       @collection.add new Backbone.Model
         type: "text"
         text: @$("textarea").val()
+        created: Date.now()
       console.log "adding model", @$("textarea").val(), @collection
 

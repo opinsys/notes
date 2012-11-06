@@ -16,12 +16,6 @@ define [
     className: "bb-text-item"
     template: template
 
-
-    constructor: ->
-      super
-      if not @model.get("created")
-        @model.set created: Date.now()
-
     events:
       "click button": "postText"
 

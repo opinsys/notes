@@ -1,7 +1,7 @@
 define [
   "cs!app/layout"
 
-  "cs!app/views/sendform"
+  "cs!app/views/send-form"
   "hbs!app/templates/timeline"
 
   "cs!app/views/text-item"
