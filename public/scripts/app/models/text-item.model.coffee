@@ -17,3 +17,6 @@ define [
       else
         return []
 
+    hasImage: -> !!@get("imageId")
+
+    getImageURL: -> "/image/#{ @get("imageId") }"
