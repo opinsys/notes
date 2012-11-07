@@ -1,7 +1,8 @@
 fs = require "fs"
 uuid = require "node-uuid"
+gm = require "gm"
 
-imageDir = __dirname + "../upload/"
+imageDir = __dirname + "/../upload/"
 
 module.exports =
 
