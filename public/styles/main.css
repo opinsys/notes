@@ -167,12 +167,6 @@ body {
   display: block;
   margin-top: 0.25em;
 }
-.bb-link-extra {
-  padding: 5px;
-  border: 1px dotted #ffc0cb;
-  font-size: 8pt;
-  margin: 5px;
-}
 .bb-send-form {
   background-color: rgba(230,230,220,0.5);
 }
@@ -226,6 +220,12 @@ body {
   color: #777;
   color: rgba(119,119,119,0.5);
   font-size: 70%;
+}
+.bb-text-item .extras > div {
+  padding: 5px;
+  border: 1px dotted #ffc0cb;
+  font-size: 8pt;
+  margin: 5px;
 }
 ::-webkit-scrollbar {
   width: 12px;
