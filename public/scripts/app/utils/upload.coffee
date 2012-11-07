@@ -18,13 +18,13 @@ define [
       speed: e.loaded / ((Date.now() - started) / 1000) / 1024
 
    xhr.onreadystatechange = (e) ->
-      if xhr.readyState is xhr.DONE
-        if res.error
-          dfd.reject res.error
+     if xhr.readyState is xhr.DONE
+       if xhr.status is 200
+         dfd.resolve JSON.parse(xhr.response)
         else
-          dfd.resolve JSON.parse(xhr.response)
+         dfd.reject xhr
 
-  xhr.open("POST", "/upload")
+  xhr.open("POST", "/image")
   xhr.send(fd)
 
-  return dfd
+  return dfd.promise()
