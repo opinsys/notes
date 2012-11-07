@@ -19,7 +19,8 @@
     "hbs": "",
     "share": "",
     "scraper": "",
-    "node-uuid": ""
+    "node-uuid": "",
+    "gm": ""
   },
   "devDependencies": {
     "yalr": ""
