@@ -4,6 +4,7 @@ define [
 
   "cs!app/layout"
   "cs!app/views/link-extra"
+  "cs!app/views/image-extra"
   "cs!app/models/text-item.model"
   "cs!app/utils/linkpreview"
   "hbs!app/templates/text-item"
@@ -13,6 +14,7 @@ define [
 
   Layout
   LinkExtra
+  ImageExtra
   TextItemModel
   linkPreview
   template
@@ -31,9 +33,15 @@ define [
       @addExtras()
 
     addExtras: ->
-      @_setView ".extras", @model.getLinks().map (link) =>
+
+      extras = @model.getLinks().map (link) =>
         new LinkExtra linkPreviewPromise: linkPreview(link)
 
+      if @model.hasImage()
+        extras.push new ImageExtra
+          model: @model
+
+      @_setView ".extras", extras
 
     viewJSON: ->
       json = @model.toJSON()
