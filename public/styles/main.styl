@@ -3,8 +3,23 @@
 
 global-reset()
 
+*
+  box-sizing border-box
+
 body
   font 100%/1.5 "Helvetica neue", Helvetica, Arial, sans-serif
+
+.clearfix
+  *zoom 1
+
+.clearfix:before,
+.clearfix:after
+  display table
+  content ""
+  line-height 0
+
+.clearfix:after
+  clear both
 
 @import "colors"
 @import "timeline"

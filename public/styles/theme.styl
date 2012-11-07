@@ -1,31 +1,66 @@
 
-
 .bb-send-form
-  button
-    background-color cyan
+  background-color rgba(230,230,220,0.5)
+  textarea
+    border 1px solid #888
+    border-radius 1px
+  .button-container
+    button
+      background-color #dedede
+      background-image linear-gradient(top, #ECEADA, #D5CDBA)
+      border 1px solid rgba(214, 214, 214, 0.85)
+      border-radius 2px
+      color #666
+      text-shadow 1px 1px 1px #ddd
+      text-transform uppercase
+      &:hover, &:active
+        background-image linear-gradient(top, #ECEADA, #BBB3A1)
+        box-shadow inset 0 0 20px rgba(237,113,19,0.2)
 
 
 
 .bb-timeline
   h1
     font-size 300%
-    color blue
+    color rgb(237,113,19)
 
   .item-container
     border none
-
-  .send-form-container
-    border 1px solid orange
 
 
 
 // Style
 .bb-text-item
-
+  border-bottom 1px solid #ECEADA
   font-size 100%
 
   p
-    color red
+    color #333
 
   .created
-    color green
+    color #777
+    color rgba(119, 119, 119, 0.5)
+    font-size 70%
+
+
+// Custom scrollbar (webkit only)
+::-webkit-scrollbar
+    width 12px
+
+::-webkit-scrollbar-track
+  box-shadow inset 0 0 6px rgba(65,120,107,0.3)
+  border-radius 2px
+
+::-webkit-scrollbar-thumb
+  background-image linear-gradient(top,rgba(237,113,19,0.05) 0%, rgba(237,113,19,0.55) 50%, rgba(237,113,19,0.05) 100%)
+  border-radius 2px
+  box-shadow inset 0 0 2px rgba(237,113,19,0.15)
+
+@media screen and (max-width:768px)
+  ::-webkit-scrollbar
+    width 20px
+
+  .bb-send-form
+    .button-container
+      button
+        font-size 100%
