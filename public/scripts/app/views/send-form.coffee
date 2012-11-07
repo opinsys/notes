@@ -1,15 +1,16 @@
 define [
   "backbone"
   "cs!app/view"
+  "cs!app/utils/upload"
   "cs!app/models/text-item.model"
   "hbs!app/templates/sendform"
 ], (
   Backbone
   View
+  upload
   TextItemModel
   template
 ) ->
-
 
   fileToDataURL = (file) ->
     dfd = new $.Deferred()
@@ -24,6 +25,7 @@ define [
     img.onload = => dfd.resolve img
     img.src = dataURL
     return dfd.promise()
+
 
   class SendForm extends View
 
@@ -42,17 +44,39 @@ define [
         @render()
 
     render: ->
+      text = @$("textarea").val()
       super
+      @$("textarea").val(text)
       if @currentImage
         @$(".image-preview").html @currentImage.el
 
     post: ->
+      if @currentImage
+        upload(@currentImage.file).fail(->
+          alert "failed to post image!"
+
+        ).done (res) =>
+          @currentImage.imageId = res.imageId
+          @sync()
+      else
+        @sync()
+
+    sync: ->
+
       json =
         type: "text"
         text: @$("textarea").val()
         created: Date.now()
 
-      @collection.add new TextItemModel json
+      if @currentImage
+        json.imageId = @currentImage.imageId
 
+      @collection.add new TextItemModel json
+      @clear()
+
+
+    clear: ->
+      @currentImage = null
+      @$("textarea").val("")
 
 
