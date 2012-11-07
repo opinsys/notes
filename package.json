@@ -20,7 +20,8 @@
     "share": "",
     "scraper": "",
     "node-uuid": "",
-    "gm": ""
+    "gm": "",
+    "async": ""
   },
   "devDependencies": {
     "yalr": ""
