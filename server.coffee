@@ -11,6 +11,8 @@ PRODUCTION = null
 app.configure "development", -> PRODUCTION = false
 app.configure "production", -> PRODUCTION = true
 
+{Image} = require "./routes/image"
+
 server = http.createServer(app)
 sharejs.attach app,
   db:
@@ -55,6 +57,6 @@ app.get "/notes/*", (req, res) ->
   res.render "notes",
     yalrConfig: yalrConfig
 
-app.post "/image", require "./routes/image"
+app.post "/image", Image.post
 
 server.listen 3000, -> console.log "listening on 3000"
