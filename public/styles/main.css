@@ -89,11 +89,15 @@ td {
 a img {
   border: none;
 }
+body {
+  font: 100%/1.5 "Helvetica neue", Helvetica, Arial, sans-serif;
+}
+.bb-timeline {
+  padding: 1em;
+}
 .bb-timeline .item-container {
-  top: 100px;
-  bottom: 100px;
-  position: absolute;
   overflow: auto;
+  padding: 0.25em;
   width: 80%;
 }
 .bb-timeline .send-form-container {
@@ -120,13 +124,13 @@ a img {
   color: #00f;
 }
 .bb-timeline .item-container {
-  border: 1px solid #000;
+  border: none;
 }
 .bb-timeline .send-form-container {
   border: 1px solid #ffa500;
 }
 .bb-text-item {
-  font-size: 20pt;
+  font-size: 100%;
 }
 .bb-text-item p {
   color: #f00;
