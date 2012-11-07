@@ -5,11 +5,11 @@ class exports.Image
 
   imageDir = "./upload/"
 
-  @hello: ->
-    "Hello World!"
-
   @get: (req, res, next) ->
-    res.send "OK"
+    imageId = req.params.imageId
+
+    stream = fs.createReadStream imageDir + imageId
+    stream.pipe(res)
 
   @post: (req, res, next) ->
     image = req.files.image

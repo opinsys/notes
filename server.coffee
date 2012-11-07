@@ -58,5 +58,6 @@ app.get "/notes/*", (req, res) ->
     yalrConfig: yalrConfig
 
 app.post "/image", Image.post
+app.get "/image/:imageId", Image.get
 
 server.listen 3000, -> console.log "listening on 3000"
