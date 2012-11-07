@@ -3,6 +3,8 @@ uuid = require "node-uuid"
 
 class exports.Image
 
+  imageDir = "./upload/"
+
   @hello: ->
     "Hello World!"
 
@@ -15,7 +17,7 @@ class exports.Image
 
     fs.readFile image.path, (err, data) ->
       return next err if err
-      newPath = "./upload/" + imageId
+      newPath = imageDir + imageId
       fs.writeFile newPath, data, (err) ->
         return next err if err
         res.json imageId: imageId
