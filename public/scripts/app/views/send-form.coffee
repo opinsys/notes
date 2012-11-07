@@ -73,6 +73,7 @@ define [
 
       @collection.add new TextItemModel json
       @clear()
+      @render()
 
 
     clear: ->
