@@ -149,6 +149,9 @@ body {
 .bb-send-form .button-container button:hover {
   cursor: pointer;
 }
+.bb-send-form .image-preview {
+  height: 100px;
+}
 @media screen and (max-width:768px) {
   .bb-send-form .button-container button {
     padding: 1em;
