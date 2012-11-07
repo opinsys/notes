@@ -116,12 +116,19 @@ body {
 }
 .bb-timeline .item-container {
   overflow: auto;
+  padding-bottom: 4em;
   width: 100%;
-  max-height: 500px;
+}
+@media screen and (max-width:768px) {
+  .bb-timeline .item-container {
+    padding-bottom: 6em;
+  }
 }
 .bb-send-form {
+  bottom: 0;
+  left: 0;
   padding: 0.25em;
-  position: relative;
+  position: fixed;
   width: 100%;
 }
 .bb-send-form textarea {
@@ -167,6 +174,7 @@ body {
   background-color: rgba(230,230,220,0.5);
 }
 .bb-send-form textarea {
+  background-color: rgba(230,230,230,0.5);
   border: 1px solid #888;
   -webkit-border-radius: 1px;
   border-radius: 1px;
