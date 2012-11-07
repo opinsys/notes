@@ -16,15 +16,14 @@
 <body>
 {{{body}}}
 
+
 <script async src="/scripts/start.js"></script>
 
+{{type}}
+{{#if yalrConfig}}
+{{{yalrConfig.tag}}}
+{{/if}}
 
-{{#unless production}}
-<script>document.write('<script src="http://'
-    + (location.host || 'localhost').split(':')[0]
-    + ':35729/livereload.js?snipver=1"></'
-    + 'script>')</script>
-{{/unless}}
 
 </body>
 </html>
