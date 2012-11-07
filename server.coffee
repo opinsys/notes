@@ -55,4 +55,6 @@ app.get "/notes/*", (req, res) ->
   res.render "notes",
     yalrConfig: yalrConfig
 
+app.post "/image", require "./routes/image"
+
 server.listen 3000, -> console.log "listening on 3000"

@@ -18,7 +18,8 @@
     "nib": "",
     "hbs": "",
     "share": "",
-    "scraper": ""
+    "scraper": "",
+    "node-uuid": ""
   },
   "devDependencies": {
     "yalr": ""
