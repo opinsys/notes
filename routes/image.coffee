@@ -1,17 +1,17 @@
 fs = require "fs"
 uuid = require "node-uuid"
 
-class exports.Image
+imageDir = __dirname + "../upload/"
 
-  imageDir = "./upload/"
+module.exports =
 
-  @get: (req, res, next) ->
+  get: (req, res, next) ->
     imageId = req.params.imageId
 
     stream = fs.createReadStream imageDir + imageId
     stream.pipe(res)
 
-  @post: (req, res, next) ->
+  post: (req, res, next) ->
     image = req.files.image
     imageId = uuid.v4()
 
