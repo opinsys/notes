@@ -10,7 +10,7 @@ define [
   xhr = new XMLHttpRequest
 
   started = Date.now()
-  xhr.upload.onprogress = (e) =>
+  xhr.upload.onprogress = (e) ->
     dfd.notify
       type: "uploadProgress"
       loaded: e.loaded / 1024
