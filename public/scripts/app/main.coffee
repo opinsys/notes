@@ -4,7 +4,9 @@ define [
   "uri"
 
   "cs!app/views/timeline"
-  "cs!app/models/timeline_collection"
+
+
+  "cs!app/models/timeline.collection"
   "cs!app/utils/unwraperr"
 ], (
   $
