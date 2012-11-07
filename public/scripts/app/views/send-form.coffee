@@ -1,10 +1,12 @@
 define [
   "backbone"
   "cs!app/view"
+  "cs!app/models/text-item.model"
   "hbs!app/templates/sendform"
 ], (
   Backbone
   View
+  TextItemModel
   template
 ) ->
   class SendForm extends View
@@ -16,7 +18,7 @@ define [
 
     postText: (e) ->
       e.preventDefault()
-      @collection.add new Backbone.Model
+      @collection.add new TextItemModel
         type: "text"
         text: @$("textarea").val()
         created: Date.now()
