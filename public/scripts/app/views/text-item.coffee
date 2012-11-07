@@ -6,7 +6,6 @@ define [
   "cs!app/views/link-extra"
   "cs!app/views/image-extra"
   "cs!app/models/text-item.model"
-  "cs!app/utils/linkpreview"
   "hbs!app/templates/text-item"
 ], (
   Backbone
@@ -16,7 +15,6 @@ define [
   LinkExtra
   ImageExtra
   TextItemModel
-  linkPreview
   template
 ) ->
   replaceURLWithHTMLLinks = (text) ->
@@ -35,7 +33,7 @@ define [
     addExtras: ->
 
       extras = @model.getLinks().map (link) =>
-        new LinkExtra linkPreviewPromise: linkPreview(link)
+        new LinkExtra link: link
 
       if @model.hasImage()
         extras.push new ImageExtra

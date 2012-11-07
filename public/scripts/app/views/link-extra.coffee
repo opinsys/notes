@@ -1,11 +1,13 @@
 define [
   "backbone"
 
+  "cs!app/utils/linkpreview"
   "cs!app/view"
   "hbs!app/templates/link-extra"
 ], (
   Backbone
 
+  linkPreview
   View
   template
 ) ->
@@ -16,11 +18,11 @@ define [
     constructor: (opts) ->
       super
 
-      opts.linkPreviewPromise.done (linkPreview) =>
+      linkPreview(opts.link).done((linkPreview) =>
         @linkPreview = linkPreview
         @render()
 
-      opts.linkPreviewPromise.fail (linkPreview) =>
+      ).fail =>
         console.log "failed load link preview"
 
     viewJSON: -> @linkPreview
