@@ -28,17 +28,11 @@ define [
 
     constructor: ->
       super
-      @fetchExtras()
+      @addExtras()
 
-    fetchExtras: ->
-      console.log @model.getLinks()
-      linkPreview(@model.getLinks()).fail(->
-        console.log "failed to load extras :("
-      ).done (links) =>
-        console.log "loaded extras", links
-        @_setView ".extras", links.map (link) =>
-          return new LinkExtra model: new Backbone.Model link
-        @render()
+    addExtras: ->
+      @_setView ".extras", @model.getLinks().map (link) =>
+        new LinkExtra linkPreviewPromise: linkPreview(link)
 
 
     viewJSON: ->
