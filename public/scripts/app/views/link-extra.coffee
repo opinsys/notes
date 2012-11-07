@@ -12,4 +12,3 @@ define [
   class LinkExtra extends View
     className: "bb-link-extra"
     template: template
-

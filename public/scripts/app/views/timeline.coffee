@@ -30,8 +30,10 @@ define [
 
     setItems: ->
       @collection.sort()
+
       @_setView ".item-container", @collection.map (model) =>
         console.log "rendering", model.get "text"
         new TextItem
           model: model
+
 

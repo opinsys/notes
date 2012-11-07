@@ -1,7 +1,9 @@
 define [
   "backbone"
+  "jquery"
 ], (
   Backbone
+  $
 ) ->
 
   linkRegxp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
@@ -14,7 +16,4 @@ define [
         return match
       else
         return []
-
-
-
 
