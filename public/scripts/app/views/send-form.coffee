@@ -16,8 +16,14 @@ define [
     reader = new FileReader
     reader.onload = (e) -> dfd.resolve e.target.result
     reader.readAsDataURL(file)
-    return dfd
+    return dfd.promise()
 
+  dataURLToImage = (dataURL) ->
+    dfd = new $.Deferred()
+    img = new Image
+    img.onload = => dfd.resolve img
+    img.src = dataURL
+    return dfd.promise()
 
   class SendForm extends View
 
@@ -28,16 +34,12 @@ define [
       "change .image-select": "handleImage"
 
     handleImage: (e) ->
-      e.preventDefault()
       @currentImage =
         file: e.target.files[0]
 
-      fileToDataURL(@currentImage.file).done (dataURL) =>
-        img = new Image
-        img.onload = => @render()
-        img.src = dataURL
+      fileToDataURL(@currentImage.file).pipe(dataURLToImage).done (img) =>
         @currentImage.el = img
-
+        @render()
 
     render: ->
       super
