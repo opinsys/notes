@@ -15,7 +15,7 @@ imageRoute = require "./routes/image"
 
 server = http.createServer(app)
 
-if PRODUCTION
+if PRODUCTION or process.env.REDIS
   dbType = "redis"
 else
   dbType = "none"
