@@ -21,7 +21,8 @@
     "scraper": "",
     "node-uuid": "",
     "gm": "",
-    "async": ""
+    "async": "",
+    "redis": ""
   },
   "devDependencies": {
     "yalr": ""
