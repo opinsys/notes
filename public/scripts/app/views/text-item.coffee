@@ -23,6 +23,8 @@ define [
 
   class TextItem extends Layout
 
+    moment.lang('fi')
+
     className: "bb-text-item"
     template: template
 
