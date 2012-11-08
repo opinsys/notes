@@ -1,5 +1,6 @@
 define [
   "cs!app/layout"
+  "iscroll"
 
   "cs!app/views/send-form"
   "hbs!app/templates/timeline"
@@ -7,11 +8,15 @@ define [
   "cs!app/views/text-item"
 ], (
   Layout
+  iScroll
 
   SendForm
   template
   TextItem
 ) ->
+
+  document.addEventListener 'touchmove', (e) -> e.preventDefault()
+
   class Timeline extends Layout
     className: "bb-timeline"
     template: template
@@ -36,4 +41,7 @@ define [
         new TextItem
           model: model
 
+    render: ->
+      super
+      new iScroll(@$(".item-container").get(0))
 
