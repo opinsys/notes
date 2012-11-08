@@ -52,6 +52,9 @@ define [
       , 300
 
 
+    elements:
+      "scrollContainer": ".item-container-wrap"
+
     setItems: ->
       @collection.sort()
 
@@ -65,7 +68,7 @@ define [
         height = Math.abs(@iscroll.y)
         position = Math.abs(@iscroll.maxScrollY)
       else
-        wrap = @$(".item-container-wrap")
+        wrap = @scrollContainer
         height = wrap.get(0).scrollHeight
         position = wrap.get(0).scrollTop + wrap.height()
 
@@ -77,7 +80,7 @@ define [
       if Modernizr.touch
         @iscroll.scrollToElement(".last")
       else
-        wrap = @$(".item-container-wrap").get(0)
+        wrap = @scrollContainer.get(0)
         wrap.scrollTop = wrap.scrollHeight
 
     render: ->
@@ -91,7 +94,7 @@ define [
       , 5
 
       # WTF: this does not work from the events-object?!
-      @$(".item-container-wrap").on "scroll", => @setAutoScroll()
+      @scrollContainer.on "scroll", => @setAutoScroll()
 
     setAutoScroll: ->
       Notes.set autoScroll: @isScrollAtBottom()
