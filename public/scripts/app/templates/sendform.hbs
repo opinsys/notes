@@ -1,10 +1,12 @@
 <textarea></textarea>
-<div class="button-container clearfix">
-  <input class="image-select" type="file" value="PIC">
-  <button>Lähetä</button>
-
-  {{#if imagePreview}}
+{{#if imagePreview}}
   <div class="image-preview"></div>
-  {{/if}}
+{{/if}}
+<div class="button-container clearfix">
+  <span class="fake-file-input" title="Add picture"><i class="icon-picture"></i>
+    <input size="2" class="image-select" type="file" value="PIC">
+    <!-- Firefox hack: max-width:768px <input size="7" class="image-select" type="file" value="PIC"> -->
+  </span>
+  <button>Lähetä</button>
 </div>
 
