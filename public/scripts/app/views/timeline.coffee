@@ -5,6 +5,8 @@ define [
   "cs!app/views/send-form"
   "hbs!app/templates/timeline"
 
+  "cs!app/views/notes-name"
+
   "cs!app/views/text-item"
 ], (
   Layout
@@ -12,6 +14,9 @@ define [
 
   SendForm
   template
+
+  NotesName
+
   TextItem
 ) ->
 
@@ -24,6 +29,9 @@ define [
     constructor: ->
       super
 
+      @_setView "header", new NotesName
+        model: @model
+
       @_setView ".send-form-container", new SendForm
         collection: @collection
 
@@ -33,15 +41,6 @@ define [
 
       @setItems()
 
-      @model.bind "change", => @render()
-
-      $('[contenteditable]')
-      .live 'focus', (e) =>
-        console.log "focus"
-      .live 'blur keyup paste', (e) =>
-        console.log "blue keyup paste"
-        console.log $(e.target).html()
-        @model.set( "name", $(e.target).html() )
 
     setItems: ->
       @collection.sort()
