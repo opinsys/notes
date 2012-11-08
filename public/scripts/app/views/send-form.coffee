@@ -61,6 +61,12 @@ define [
       else
         @sync()
 
+
+    viewJSON: ->
+      json = {}
+      json.imagePreview = !!@currentImage
+      return json
+
     sync: ->
 
       json =
