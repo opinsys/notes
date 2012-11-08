@@ -109,6 +109,20 @@ body {
 .clearfix:after {
   clear: both;
 }
+.loading {
+  margin-top: 20px;
+}
+.loading #loading-spinner {
+  float: left;
+  width: 70px;
+  height: 70px;
+}
+.loading h1 {
+  float: left;
+  width: 50%;
+  color: #ed7113;
+  font-size: 300%;
+}
 .bb-timeline {
   margin: 0 auto;
   padding: 1em;

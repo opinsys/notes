@@ -18,6 +18,7 @@ define [
   unwraperr
 )-> -> $ ->
 
+  $(".loading").remove()
   url = uri.parse(window.location.href)
   id = url.path.match(/\/notes\/(.+)$/)?[1]
   if not id
