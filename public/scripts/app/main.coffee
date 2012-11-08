@@ -23,6 +23,9 @@ define [
   if not id
     throw new Error "Bad url"
 
+  metaCollection = new Backbone.SharedCollection [],
+    collectionId: id + "meta"
+
   window.timeline = new TimelineCollection [],
     collectionId: id
 
@@ -31,17 +34,32 @@ define [
     throw err if err
 
     timeline.setDoc(doc)
+  
 
-    timeline.fetch
+    metaCollection.setDoc(doc)
+
+    metaCollection.fetch
       error: (err) ->
-        console.log "ERER", err
+        console.log "ERROR", err
 
-      success: (foo) ->
-        console.log "Connected sharejs!", foo
+      success: ->
+        if not metaModel = metaCollection.get "meta"
+          metaModel = new Backbone.Model
+            name:  prompt("Anna muistiolle nimi:")
+            id: "meta"
+          metaCollection.add metaModel
 
-        view = new Timeline
-          collection: timeline
-        view.render()
-        $("body").append view.el
-
+        timeline.fetch
+          error: (err) ->
+            console.log "ERROR", err
+    
+          success: ->
+            console.log "Connected sharejs!"
+    
+            view = new Timeline
+              collection: timeline
+              model: metaModel
+            view.render()
+            $("body").append view.el
+            
 
