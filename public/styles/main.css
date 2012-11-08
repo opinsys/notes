@@ -145,11 +145,15 @@ img {
   top: 65px;
   width: 100%;
   z-index: 1;
+  overflow: auto;
 }
 .bb-timeline .send-form-container {
   bottom: 0px;
   position: absolute;
   z-index: 100;
+}
+.touch .bb-timeline .item-container {
+  padding-bottom: 50px;
 }
 @media screen and (max-device-width:1024px) and (orientation: landscape) {
   .bb-timeline {
@@ -394,6 +398,11 @@ img {
 }
 input[type="file"]:hover {
   cursor: pointer;
+}
+.bb-send-form .auto-scroll {
+  font-style: italic;
+  color: #90ee90;
+  margin-left: 10px;
 }
 @media screen and (max-device-width:1024px) and (orientation: landscape) {
   .bb-send-form {
