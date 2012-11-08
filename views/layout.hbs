@@ -3,26 +3,26 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Notes</title>
-    <script>
-    window.require = { baseUrl: "/scripts/" };
-    </script>
+    {{! Load Moderniz at very begining so that it is usable during loading animation etc. }}
     <script src="/scripts/vendor/modernizr-custom.js"></script>
-    <script src="/channel/bcsocket.js"></script>
-    <script src="/share/share.uncompressed.js"></script>
-    <script src="/share/json.uncompressed.js"></script>
-
-    <script src="/scripts/require.js"></script>
-    <script src="/scripts/config.js"></script>
     <link type="text/css" rel="stylesheet" media="all" href="/img/notes-iconfont/css/notes-iconfont.css">
     <link type="text/css" rel="stylesheet" media="all" href="/styles/main.css">
 </head>
 <body>
+
+
 {{{body}}}
 
+{{!
+Load ShareJS libraries served by the library server
+TODO: Shim with AMD
+}}
 <script src="/channel/bcsocket.js"></script>
 <script src="/share/share.uncompressed.js"></script>
 <script src="/share/json.uncompressed.js"></script>
 
+{{! Load requireJS and the actual application }}
+<script>window.require = { baseUrl: "/scripts/" };</script>
 <script src="/scripts/require.js"></script>
 <script src="/scripts/config.js"></script>
 <script async src="/scripts/start.js"></script>
