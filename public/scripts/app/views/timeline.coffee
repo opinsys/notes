@@ -57,7 +57,7 @@ define [
 
       items = @collection.map (model) =>
         new TextItem model: model
-      _.last(items).$el.addClass "last"
+      _.last(items)?.$el.addClass "last"
       @_setView ".item-container", items
 
     isScrollAtBottom: ->
