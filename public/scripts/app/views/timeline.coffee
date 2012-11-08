@@ -22,6 +22,10 @@ define [
 
   document.addEventListener 'touchmove', (e) -> e.preventDefault()
 
+  areClose = (a, b, threshold) ->
+    return Math.abs(a - b) <= threshold
+
+
   class Timeline extends Layout
     className: "bb-timeline"
     template: template
@@ -50,10 +54,27 @@ define [
         new TextItem
           model: model
 
+    isScrollAtBottom: ->
+      if Modernizr.touch
+        height = Math.abs(@iscroll.y)
+        position = Math.abs(@iscroll.maxScrollY)
+      else
+        wrap = @$(".item-container-wrap")
+        height = wrap.get(0).scrollHeight
+        position = $(wrap).scrollTop() + $(wrap).height()
+
+      res = areClose(position, height, 20)
+      return res
+
+    scrollToBottom: ->
+      wrap = @$(".item-container-wrap").get(0)
+      wrap.scrollTop = wrap.scrollHeight
+
     render: ->
       super
       # iScroll does not work properly if it is immediately added
-      setTimeout ->
-        new iScroll(@$(".item-container").get(0))
+      setTimeout =>
+        @iscroll = new iScroll(@$(".item-container").get(0))
+        @scrollToBottom()
       , 5
 
