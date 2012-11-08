@@ -1,15 +1,19 @@
 define [
   "backbone"
+
   "cs!app/view"
   "cs!app/utils/upload"
   "cs!app/models/text-item.model"
   "hbs!app/templates/sendform"
+  "cs!app/notes"
 ], (
   Backbone
+
   View
   upload
   TextItemModel
   template
+  Notes
 ) ->
 
   fileToDataURL = (file) ->
@@ -31,6 +35,12 @@ define [
 
     className: "bb-send-form"
     template: template
+
+    constructor: ->
+      super
+
+      @bindTo Notes, "change:autoScroll", @render
+
     events:
       "click button": "post"
       "change .image-select": "handleImage"
@@ -62,10 +72,10 @@ define [
         @sync()
 
 
-    viewJSON: ->
-      json = {}
-      json.imagePreview = !!@currentImage
-      return json
+    viewJSON: -> {
+      imagePreview: !!@currentImage
+      autoScroll: Notes.get "autoScroll"
+    }
 
     sync: ->
 
