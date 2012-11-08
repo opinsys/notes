@@ -1,5 +1,10 @@
 define ["backbone"], (Backbone) ->
 
-  # Application wide event emitter and model. Use with consideration!
-  return new Backbone.Model
-    autoScroll: true
+  Notes =
+    reset: ->
+      @global = new Backbone.Model
+        autoScroll: true
+
+  Notes.reset()
+
+  return Notes

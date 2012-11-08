@@ -38,7 +38,7 @@ define [
       @setItems()
 
       $(window).on "resize", _.debounce =>
-        @scrollToBottom() if Notes.get("autoScroll")
+        @scrollToBottom() if Notes.global.get("autoScroll")
       , 300
 
 
@@ -80,11 +80,11 @@ define [
         @iscroll = new iScroll @$(".item-container").get(0),
           vScrollbar: true
           onScrollEnd: => @setAutoScroll()
-        @scrollToBottom() if Notes.get("autoScroll")
+        @scrollToBottom() if Notes.global.get("autoScroll")
       , 5
 
       # WTF: this does not work from the events-object?!
       @scrollContainer.on "scroll", => @setAutoScroll()
 
     setAutoScroll: ->
-      Notes.set autoScroll: @isScrollAtBottom()
+      Notes.global.set autoScroll: @isScrollAtBottom()

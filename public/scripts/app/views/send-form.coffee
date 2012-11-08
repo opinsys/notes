@@ -39,7 +39,7 @@ define [
     constructor: ->
       super
 
-      @bindTo Notes, "change:autoScroll", @render
+      @bindTo Notes.global, "change:autoScroll", @render
 
     events:
       "click button": "post"
@@ -74,7 +74,7 @@ define [
 
     viewJSON: -> {
       imagePreview: !!@currentImage
-      autoScroll: Notes.get "autoScroll"
+      autoScroll: Notes.global.get "autoScroll"
     }
 
     sync: ->
