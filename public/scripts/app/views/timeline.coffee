@@ -1,6 +1,7 @@
 define [
   "cs!app/layout"
   "iscroll"
+  "underscore"
 
   "cs!app/views/send-form"
   "hbs!app/templates/timeline"
@@ -11,6 +12,7 @@ define [
 ], (
   Layout
   iScroll
+  _
 
   SendForm
   template
@@ -44,6 +46,10 @@ define [
         @render()
 
       @setItems()
+
+      $(window).on "resize", _.debounce =>
+        @scrollToBottom()
+      , 300
 
 
     setItems: ->
