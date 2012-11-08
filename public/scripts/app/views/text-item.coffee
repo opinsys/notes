@@ -1,6 +1,6 @@
 define [
   "backbone"
-  "moment"
+  "moment-fi"
 
   "cs!app/layout"
   "cs!app/views/link-extra"

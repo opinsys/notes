@@ -33,6 +33,7 @@ require.config({
     "underscore.string": "vendor/underscore.string",
     backbone: "vendor/backbone",
     moment: "vendor/moment",
+    "moment-fi": "vendor/moment-fi",
     uri: "vendor/URI",
     "socket.io": "vendor/socket.io",
     "backbone.io": "vendor/backbone.io",
