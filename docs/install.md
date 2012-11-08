@@ -24,7 +24,7 @@ sudo make install
 
 ### Redis
 ```shell
-get http://redis.googlecode.com/files/redis-2.6.2.tar.gz
+wget http://redis.googlecode.com/files/redis-2.6.2.tar.gz
 tar zxf redis-2.6.2.tar.gz
 cd redis-2.6.2
 make
