@@ -33,6 +33,16 @@ define [
 
       @setItems()
 
+      @model.bind "change", => @render()
+
+      $('[contenteditable]')
+      .live 'focus', (e) =>
+        console.log "focus"
+      .live 'blur keyup paste', (e) =>
+        console.log "blue keyup paste"
+        console.log $(e.target).html()
+        @model.set( "name", $(e.target).html() )
+
     setItems: ->
       @collection.sort()
 
