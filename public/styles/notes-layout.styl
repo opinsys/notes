@@ -1,3 +1,4 @@
+@import "mediaqueries"
 
 .bb-notes-layout
 
@@ -9,13 +10,13 @@
     position absolute
     top 0px
 
-@media screen and (max-device-width:1024px) and (orientation: landscape)
+@media landscapeTabled
   .bb-notes-layout
     padding 0
     header
       padding 0 1em
 
-@media screen and (max-width:768px)
+@media portraitTabled
   .bb-notes-layout
     padding 0
     header
