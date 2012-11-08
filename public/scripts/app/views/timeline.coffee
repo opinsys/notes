@@ -7,8 +7,8 @@ define [
   "hbs!app/templates/timeline"
 
   "cs!app/views/notes-name"
-
   "cs!app/views/text-item"
+  "cs!app/notes"
 ], (
   Layout
   iScroll
@@ -18,8 +18,8 @@ define [
   template
 
   NotesName
-
   TextItem
+  Notes
 ) ->
 
   document.addEventListener 'touchmove', (e) -> e.preventDefault()
@@ -35,8 +35,6 @@ define [
     constructor: ->
       super
 
-      @autoScroll = true
-
       @_setView "header", new NotesName
         model: @model
 
@@ -50,7 +48,7 @@ define [
       @setItems()
 
       $(window).on "resize", _.debounce =>
-        @scrollToBottom() if @autoScroll
+        @scrollToBottom() if Notes.get("autoScroll")
       , 300
 
 
@@ -89,11 +87,11 @@ define [
         @iscroll = new iScroll @$(".item-container").get(0),
           vScrollbar: true
           onScrollEnd: => @setAutoScroll()
-        @scrollToBottom() if @autoScroll
+        @scrollToBottom() if Notes.get("autoScroll")
       , 5
 
       # WTF: this does not work from the events-object?!
       @$(".item-container-wrap").on "scroll", => @setAutoScroll()
 
     setAutoScroll: ->
-      @autoScroll = @isScrollAtBottom()
+      Notes.set autoScroll: @isScrollAtBottom()
