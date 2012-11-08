@@ -12,6 +12,24 @@
     min-height 40px
     width 100%
   .button-container
+    .fake-file-input, button
+      min-width 95px
+    .fake-file-input
+      display inline-block
+      height 26px
+      line-height 2
+      position relative
+      vertical-align middle
+      width 10%
+      &:before
+        content "+"
+        padding-right 0.25em
+      input[type="file"]
+        height 26px
+        left 0
+        position absolute
+        top 0
+        width 100%
     button
       float right
       padding 0.5em
@@ -21,12 +39,46 @@
         cursor pointer
 
   .image-preview
-    height 100px
+    img
+      max-height 200px
+      height auto
+
+
+/*@media screen and (min-width:1280px)
+  .bb-send-form
+    bottom 10%
+    left 64%
+    padding 0 1em
+    right 0
+    top 11%
+    width 35%
+    .button-container
+      .fake-file-input
+        width 20%
+    textarea
+      min-height 200px*/
+
+@media screen and (max-device-width:1024px) and (orientation: landscape)
+  .bb-send-form
+    .button-container
+      .fake-file-input
+        height 52px
+        line-height 0
+        input[type="file"]
+          height 52px
+      button, .fake-file-input
+        padding 1em
+        width 20%
 
 @media screen and (max-width:768px)
 
   .bb-send-form
     .button-container
-      button
+      .fake-file-input
+        height 52px
+        line-height 0
+        input[type="file"]
+          height 52px
+      button, .fake-file-input
         padding 1em
         width 20%

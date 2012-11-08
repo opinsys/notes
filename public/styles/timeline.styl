@@ -11,20 +11,41 @@
     top 0px
 
   .item-container-wrap
+    bottom 85px
+    left 0
+    margin 0
+    padding 1em
     position absolute
+    top 65px
+    width 100%
     z-index 1
-    top 60px
-    width 98%
-    bottom 120px
-    border 1px solid red
 
   .send-form-container
-    position absolute
     bottom 0px
+    position absolute
+    z-index 100
 
 
+
+/*media screen and (min-width:1280px)
+  .bb-timeline
+    .item-container-wrap
+      bottom 10px
+      width 60%*/
+@media screen and (max-device-width:1024px) and (orientation: landscape)
+  .bb-timeline
+    padding 0
+    header
+      padding 0 1em
+    .item-container-wrap
+      bottom 110px
+      padding-bottom 3em
 
 @media screen and (max-width:768px)
   .bb-timeline
-    .item-container
-      padding-bottom 6em
+    padding 0
+
+    header
+      padding 0 1em
+    .item-container-wrap
+      bottom 110px
