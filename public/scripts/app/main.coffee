@@ -3,8 +3,7 @@ define [
   "backbone"
   "uri"
 
-  "cs!app/views/timeline"
-
+  "cs!app/views/notes-layout"
 
   "cs!app/models/timeline.collection"
   "cs!app/utils/unwraperr"
@@ -13,7 +12,7 @@ define [
   Backbone
   uri
 
-  Timeline
+  NotesLayout
   TimelineCollection
   unwraperr
 )-> -> $ ->
@@ -35,7 +34,7 @@ define [
     throw err if err
 
     timeline.setDoc(doc)
-  
+
 
     metaCollection.setDoc(doc)
 
@@ -53,14 +52,14 @@ define [
         timeline.fetch
           error: (err) ->
             console.log "ERROR", err
-    
+
           success: ->
             console.log "Connected sharejs!"
-    
-            view = new Timeline
+
+            view = new NotesLayout
               collection: timeline
               model: metaModel
             view.render()
             $("body").append view.el
-            
+
 

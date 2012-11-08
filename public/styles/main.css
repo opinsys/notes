@@ -127,14 +127,30 @@ img {
   color: #ed7113;
   font-size: 300%;
 }
-.bb-timeline {
+.bb-notes-layout {
   margin: 0 auto;
   padding: 1em;
   width: 100%;
 }
-.bb-timeline header {
+.bb-notes-layout header {
   position: absolute;
   top: 0px;
+}
+@media screen and (max-device-width:1024px) and (orientation: landscape) {
+  .bb-notes-layout {
+    padding: 0;
+  }
+  .bb-notes-layout header {
+    padding: 0 1em;
+  }
+}
+@media screen and (max-width:768px) {
+  .bb-notes-layout {
+    padding: 0;
+  }
+  .bb-notes-layout header {
+    padding: 0 1em;
+  }
 }
 .bb-timeline .item-container-wrap {
   bottom: 85px;
@@ -156,24 +172,12 @@ img {
   padding-bottom: 50px;
 }
 @media screen and (max-device-width:1024px) and (orientation: landscape) {
-  .bb-timeline {
-    padding: 0;
-  }
-  .bb-timeline header {
-    padding: 0 1em;
-  }
   .bb-timeline .item-container-wrap {
     bottom: 110px;
     padding-bottom: 3em;
   }
 }
 @media screen and (max-width:768px) {
-  .bb-timeline {
-    padding: 0;
-  }
-  .bb-timeline header {
-    padding: 0 1em;
-  }
   .bb-timeline .item-container-wrap {
     bottom: 110px;
   }
@@ -348,7 +352,7 @@ img {
   -webkit-box-shadow: inset 0 0 20px rgba(237,237,237,0.4);
   box-shadow: inset 0 0 20px rgba(237,237,237,0.4);
 }
-.bb-timeline h1 {
+.bb-notes-layout h1 {
   font-size: 300%;
   color: #ed7113;
 }

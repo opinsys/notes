@@ -3,10 +3,8 @@ define [
   "iscroll"
   "underscore"
 
-  "cs!app/views/send-form"
   "hbs!app/templates/timeline"
 
-  "cs!app/views/notes-name"
   "cs!app/views/text-item"
   "cs!app/notes"
 ], (
@@ -14,10 +12,8 @@ define [
   iScroll
   _
 
-  SendForm
   template
 
-  NotesName
   TextItem
   Notes
 ) ->
@@ -34,12 +30,6 @@ define [
 
     constructor: ->
       super
-
-      @_setView "header", new NotesName
-        model: @model
-
-      @_setView ".send-form-container", new SendForm
-        collection: @collection
 
       @bindTo @collection, "add change", =>
         @setItems()
