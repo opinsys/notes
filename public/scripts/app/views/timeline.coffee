@@ -35,6 +35,8 @@ define [
     constructor: ->
       super
 
+      @autoScroll = true
+
       @_setView "header", new NotesName
         model: @model
 
@@ -48,16 +50,17 @@ define [
       @setItems()
 
       $(window).on "resize", _.debounce =>
-        @scrollToBottom()
+        @scrollToBottom() if @autoScroll
       , 300
 
 
     setItems: ->
       @collection.sort()
 
-      @_setView ".item-container", @collection.map (model) =>
-        new TextItem
-          model: model
+      items = @collection.map (model) =>
+        new TextItem model: model
+      _.last(items).$el.addClass "last"
+      @_setView ".item-container", items
 
     isScrollAtBottom: ->
       if Modernizr.touch
@@ -66,20 +69,31 @@ define [
       else
         wrap = @$(".item-container-wrap")
         height = wrap.get(0).scrollHeight
-        position = $(wrap).scrollTop() + $(wrap).height()
+        position = wrap.get(0).scrollTop + wrap.height()
 
-      res = areClose(position, height, 20)
+      res = areClose(position, height, 50)
+      # alert(position + " vs " + height + " -> " + res)
       return res
 
     scrollToBottom: ->
-      wrap = @$(".item-container-wrap").get(0)
-      wrap.scrollTop = wrap.scrollHeight
+      if Modernizr.touch
+        @iscroll.scrollToElement(".last")
+      else
+        wrap = @$(".item-container-wrap").get(0)
+        wrap.scrollTop = wrap.scrollHeight
 
     render: ->
       super
       # iScroll does not work properly if it is immediately added
       setTimeout =>
-        @iscroll = new iScroll(@$(".item-container").get(0))
-        @scrollToBottom()
+        @iscroll = new iScroll @$(".item-container").get(0),
+          vScrollbar: true
+          onScrollEnd: => @setAutoScroll()
+        @scrollToBottom() if @autoScroll
       , 5
 
+      # WTF: this does not work from the events-object?!
+      @$(".item-container-wrap").on "scroll", => @setAutoScroll()
+
+    setAutoScroll: ->
+      @autoScroll = @isScrollAtBottom()
