@@ -123,6 +123,7 @@ sudo mkdir /var/app
 cd /var/app
 git clone https://github.com/opinsys/notes.git
 sudo chmod -R o+r /var/app/notes
+sudo chmod o+w /var/app/notes/upload
 ```
 
 ### Install dependencies
