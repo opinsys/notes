@@ -95,4 +95,12 @@
     if (typeof window !== 'undefined' && this.moment && this.moment.lang) {
         this.moment.lang('fi', lang);
     }
+
+    if (typeof define !== 'undefined') {
+        define(["moment"], function(moment){
+            moment.lang('fi', lang);
+            return moment;
+        });
+    }
+
 }());
