@@ -14,9 +14,15 @@ app.configure "production", -> PRODUCTION = true
 imageRoute = require "./routes/image"
 
 server = http.createServer(app)
+
+if PRODUCTION
+  dbType = "redis"
+else
+  dbType = "none"
+
 sharejs.attach app,
   db:
-    type: "none"
+    type: dbType
 
 
 yalrConfig = null
