@@ -46,7 +46,7 @@ define [
       success: ->
         if not metaModel = metaCollection.get "meta"
           metaModel = new Backbone.Model
-            name: "Notes"
+            name: "Muistio"
             id: "meta"
           metaCollection.add metaModel
 
