@@ -18,6 +18,9 @@ define [
     render: ->
       @$el.html @template(@viewJSON())
 
+      if @elements
+        for key, selector of @elements
+          @[key] = @$(selector)
 
     bindTo: (emitter, event, callback, context) ->
       context = context or this
