@@ -1,34 +1,52 @@
-
 @import "colors"
 
 .bb-send-form
-  background-color rgba(230,230,220,0.5)
+  background-color rgba(230,230,220,0.75)
   textarea
-    background-color rgba(230,230,230,0.5)
+    background-color rgba(250,250,250,0.7)
     border 1px solid #888
     border-radius 1px
+    &:focus
+      background-color rgba(255,255,255,0.5)
   .button-container
+    .fake-file-input, button
+      color #222
+    .fake-file-input
+      background-image linear-gradient(top, opinsys-orange, opinsys-orange-light)
+      border-radius 2px
+      font-size 70%
+      text-align center
+      text-shadow 0 1px 1px #ddd
+      text-transform uppercase
+      &:before
+        font-size 120%
+        font-weight 800
+      &:hover
+        background-image linear-gradient(top, opinsys-orange, opinsys-orange-lighter)
+        box-shadow inset 0 0 20px rgba(237,237,237,0.4)
+      i
+        font-size 120%
+      input[type="file"]
+        opacity 0
     button
-      background-color #dedede
-      background-image linear-gradient(top, #ECEADA, #D5CDBA)
+      background-color opinsys-green
+      background-image linear-gradient(top, opinsys-green, opinsys-green-light)
       border 1px solid rgba(214, 214, 214, 0.85)
       border-radius 2px
-      color #666
       text-shadow 1px 1px 1px #ddd
       text-transform uppercase
       &:hover, &:active
-        background-image linear-gradient(top, #ECEADA, #BBB3A1)
-        box-shadow inset 0 0 20px rgba(237,113,19,0.2)
-
-
+        background-image linear-gradient(top, opinsys-green, opinsys-green-lighter)
+        box-shadow inset 0 0 20px rgba(237,237,237,0.4)
 
 .bb-timeline
   h1
     font-size 300%
     color titleColor
 
-  .item-container
+  .item-container-wrap
     border none
+    box-shadow inset 0 0 40px rgba(200, 200, 200, 0.5)
 
 
 
@@ -47,7 +65,7 @@
 
   .extras > div
     padding 5px
-    border 1px dotted pink
+    border 1px dotted opinsys-orange
     font-size 8pt
     margin 5px
 
@@ -65,11 +83,30 @@
     border-radius 2px
     box-shadow inset 0 0 2px rgba(237,113,19,0.15)
 
-@media screen and (max-width:768px)
-  .no-touch ::-webkit-scrollbar
-    width 20px
+input[type="file"]:hover
+  cursor pointer
 
+/*@media screen and (min-width:1280px)
   .bb-send-form
+    background-color transparent*/
+
+@media screen and (max-device-width:1024px) and (orientation: landscape)
+  .bb-send-form
+    padding 0.5em
     .button-container
+      .fake-file-input
+        font-size 120%
+        i
+          font-size 120%
+      button
+        font-size 100%
+@media screen and (max-width:768px)
+  .bb-send-form
+    padding 0.5em
+    .button-container
+      .fake-file-input
+        font-size 120%
+        i
+          font-size 120%
       button
         font-size 100%
