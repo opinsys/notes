@@ -43,5 +43,8 @@ define [
 
     render: ->
       super
-      new iScroll(@$(".item-container").get(0))
+      # iScroll does not work properly if it is immediately added
+      setTimeout ->
+        new iScroll(@$(".item-container").get(0))
+      , 5
 
