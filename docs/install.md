@@ -45,7 +45,7 @@ sudo mkdir /etc/redis
 
 /etc/redis/redis.conf
 ```
-aemonize no
+daemonize no
 pidfile /var/run/redis.pid
 port 6379
 timeout 0
