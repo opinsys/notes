@@ -13,6 +13,7 @@ getLinkPreview = (url, cb) ->
     console.log "Get page source"
     throw err if err
     info["title"] = jQuery('title').html()
+    info["url"] = url
     linkPreviewData[url] = info
     return cb null, info
 
