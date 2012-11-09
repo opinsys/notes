@@ -24,6 +24,7 @@
     "gm": "",
     "async": "",
     "memoize": "",
+    "filed": "",
     "redis": ""
   },
   "devDependencies": {
