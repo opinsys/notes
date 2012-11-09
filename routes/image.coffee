@@ -6,26 +6,9 @@ uuid = require "node-uuid"
 gm = require "gm"
 filed = require "filed"
 
+resize = require "../lib/resize"
 
 imageDir = path.join(__dirname,  "/../upload/")
-
-downScale = ({width, height}, maxWidth) ->
-  if width < maxWidth and height < maxWidth
-    height = height
-    width = width
-  else if width > height
-    scale = maxWidth / width
-    width = maxWidth
-    height = height * scale
-  else
-    scale = maxWidth / height
-    height = maxWidth
-    width = width * scale
-
-  return {
-    width: width
-    height: height
-  }
 
 module.exports =
 
@@ -38,30 +21,19 @@ module.exports =
     imageId = uuid.v4()
 
     newFilePath = imageDir + imageId
-
-    gm(image.path).size (err, size) ->
-      return next err if err
-
-      # https://github.com/caolan/async#forEach
-      async.forEach [
+    formats = [
         max: 1000
         suffix: "_full"
       ,
         max: 400
         suffix: ""
       ,
-        max: 50
+        max: 100
         suffix: "_thumb"
-      ], (opts, cb) ->
+    ]
 
-        downScaled = downScale(size, opts.max)
-        gm(image.path).resize(
-          downScaled.width
-          downScaled.height
-        ).write(newFilePath + opts.suffix, cb)
-
-      , (err) ->
-        return next err if err
-        res.json imageId: imageId
+    resize image.path, formats, imageDir, (err, imageId) ->
+      return next err if err
+      res.json imageId: imageId
 
 

@@ -19,4 +19,4 @@ define [
 
     hasImage: -> !!@get("imageId")
 
-    getImageURL: -> "/image/#{ @get("imageId") }"
+    getImageURL: -> "/image/#{ @get("imageId") }.jpg"
