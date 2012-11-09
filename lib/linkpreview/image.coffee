@@ -8,13 +8,13 @@ request = require "request"
 
 resize = require("../resize")
 
-module.exports = (imageDir) -> (ob, done) ->
+module.exports = (targetDir) -> (ob, done) ->
 
   if not ob.mime?.match /^image\/.+$/
     return done null, ob
 
   console.log "setting image"
-  sourcePath = path.join imageDir, uuid.v4()
+  sourcePath = path.join targetDir, uuid.v4()
 
   fileStream = filed(sourcePath)
   request.get(ob.url).pipe(fileStream)
@@ -22,11 +22,10 @@ module.exports = (imageDir) -> (ob, done) ->
   fileStream.on "error", (err) -> done err
   fileStream.on "end", ->
 
-    resize [
+    resize sourcePath, [
       max: 50
-    ],
-      sourcePath
-    , imageDir
+    ]
+    , targetDir
     , (err, imageId) ->
       return done err if err
 
@@ -35,5 +34,3 @@ module.exports = (imageDir) -> (ob, done) ->
       console.log "image set", imageId
       ob.imageId = imageId
       return done null, ob
-
-

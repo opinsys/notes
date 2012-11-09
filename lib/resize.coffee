@@ -24,7 +24,7 @@ downScale = ({width, height}, maxWidth) ->
     height: height
   }
 
-module.exports = (formats, sourceImagePath, targetDir, done) ->
+module.exports = (sourceImagePath, formats, targetDir, done) ->
 
   imageId = uuid.v4()
 
