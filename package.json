@@ -9,7 +9,8 @@
     "url": "http://github.com/opinsys/notes.git"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "node_modules/.bin/mocha --no-colors --compilers coffee:coffee-script tests/*test*"
   },
   "dependencies": {
     "coffee-script": "",
