@@ -8,7 +8,9 @@
     <!-- Firefox hack: max-width:768px <input size="7" class="image-select" type="file" value="PIC"> -->
   </span>
   {{#if autoScroll}}
-  <span class="auto-scroll">autoscroll</span>
+  <span class="auto-scroll"><i class="icon-lock"></i>autoscroll</span>
+  {{else}}
+    <span class="auto-scroll-open"><i class="icon-lock-open"></i>autoscroll</span>
   {{/if}}
   <button>Lähetä</button>
 </div>
