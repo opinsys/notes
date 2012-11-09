@@ -95,6 +95,7 @@ a img {
   box-sizing: border-box;
 }
 body {
+  background-color: #f0eee1;
   font: 100%/1.5 "Helvetica neue", Helvetica, Arial, sans-serif;
   overflow-x: hidden;
 }
@@ -188,12 +189,21 @@ img {
   padding: 0.25em;
   position: fixed;
   width: 100%;
+  z-index: 9999;
 }
 .bb-send-form textarea {
   margin: 0;
+  max-height: 100px;
   max-width: 100%;
   min-height: 40px;
   width: 100%;
+}
+.bb-send-form .button-container {
+  position: relative;
+}
+.bb-send-form .button-container .auto-scroll,
+.bb-send-form .button-container .auto-scroll-open {
+  margin-left: 2%;
 }
 .bb-send-form .button-container .fake-file-input,
 .bb-send-form .button-container button {
@@ -204,8 +214,10 @@ img {
   height: 26px;
   line-height: 2;
   position: relative;
-  vertical-align: middle;
   width: 10%;
+}
+.bb-send-form .button-container .fake-file-input:hover {
+  cursor: pointer;
 }
 .bb-send-form .button-container .fake-file-input:before {
   content: "+";
@@ -235,6 +247,13 @@ img {
   height: auto;
 }
 @media screen and (max-device-width:1024px) and (orientation: landscape) {
+  .bb-send-form .button-container .auto-scroll,
+  .bb-send-form .button-container .auto-scroll-open {
+    font-size: 120%;
+    height: 52px;
+    position: absolute;
+    top: 25%;
+  }
   .bb-send-form .button-container .fake-file-input {
     height: 52px;
     line-height: 0;
@@ -249,6 +268,13 @@ img {
   }
 }
 @media screen and (max-width:768px) {
+  .bb-send-form .button-container .auto-scroll,
+  .bb-send-form .button-container .auto-scroll-open {
+    font-size: 120%;
+    height: 52px;
+    position: absolute;
+    top: 25%;
+  }
   .bb-send-form .button-container .fake-file-input {
     height: 52px;
     line-height: 0;
@@ -267,6 +293,9 @@ img {
   margin: 1em 0;
   padding: 0 0.85em 1em;
 }
+.bb-text-item p {
+  word-wrap: break-word;
+}
 .bb-text-item:first-of-type {
   border-top: 1px solid #eceada;
   padding-top: 1em;
@@ -283,9 +312,16 @@ img {
   border: 1px solid #888;
   -webkit-border-radius: 1px;
   border-radius: 1px;
+  font-size: 100%;
 }
 .bb-send-form textarea:focus {
   background-color: rgba(255,255,255,0.5);
+}
+.bb-send-form .button-container .auto-scroll {
+  color: #ad0000;
+}
+.bb-send-form .button-container .auto-scroll-open {
+  color: #0a640a;
 }
 .bb-send-form .button-container .fake-file-input,
 .bb-send-form .button-container button {
@@ -357,6 +393,7 @@ img {
   color: #ed7113;
 }
 .bb-timeline .item-container-wrap {
+  background-color: #fff;
   border: none;
   -webkit-box-shadow: inset 0 0 40px rgba(200,200,200,0.5);
   box-shadow: inset 0 0 40px rgba(200,200,200,0.5);
@@ -402,11 +439,6 @@ img {
 }
 input[type="file"]:hover {
   cursor: pointer;
-}
-.bb-send-form .auto-scroll {
-  font-style: italic;
-  color: #90ee90;
-  margin-left: 10px;
 }
 @media screen and (max-device-width:1024px) and (orientation: landscape) {
   .bb-send-form {

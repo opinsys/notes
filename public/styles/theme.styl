@@ -7,9 +7,14 @@
     background-color rgba(250,250,250,0.7)
     border 1px solid #888
     border-radius 1px
+    font-size 100%
     &:focus
       background-color rgba(255,255,255,0.5)
   .button-container
+    .auto-scroll
+      color dark-red
+    .auto-scroll-open
+      color dark-green
     .fake-file-input, button
       color #222
     .fake-file-input
@@ -47,6 +52,7 @@
 
 .bb-timeline
   .item-container-wrap
+    background-color white
     border none
     box-shadow inset 0 0 40px rgba(200, 200, 200, 0.5)
 
@@ -91,11 +97,6 @@ input[type="file"]:hover
 /*@media screen and (min-width:1280px)
   .bb-send-form
     background-color transparent*/
-
-.bb-send-form .auto-scroll
-  font-style italic
-  color lightgreen
-  margin-left 10px
 
 
 @media landscapeTabled

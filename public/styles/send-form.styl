@@ -9,10 +9,15 @@
   z-index 9999
   textarea
     margin 0
+    max-height 100px
     max-width 100%
     min-height 40px
     width 100%
   .button-container
+    position relative
+    .auto-scroll, .auto-scroll-open
+      margin-left 2%
+
     .fake-file-input, button
       min-width 95px
     .fake-file-input
@@ -20,8 +25,9 @@
       height 26px
       line-height 2
       position relative
-      vertical-align middle
       width 10%
+      &:hover
+        cursor pointer
       &:before
         content "+"
         padding-right 0.25em
@@ -62,6 +68,11 @@
 @media screen and (max-device-width:1024px) and (orientation: landscape)
   .bb-send-form
     .button-container
+      .auto-scroll, .auto-scroll-open
+        font-size 120%
+        height 52px
+        position absolute
+        top 25%
       .fake-file-input
         height 52px
         line-height 0
@@ -75,6 +86,11 @@
 
   .bb-send-form
     .button-container
+      .auto-scroll, .auto-scroll-open
+        font-size 120%
+        height 52px
+        position absolute
+        top 25%
       .fake-file-input
         height 52px
         line-height 0
