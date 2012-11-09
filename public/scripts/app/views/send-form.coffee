@@ -69,7 +69,7 @@ define [
           @currentImage.imageId = res.imageId
           @sync()
       else
-        @sync()
+        @sync() if @$("textarea").val() != ""
 
 
     viewJSON: -> {
