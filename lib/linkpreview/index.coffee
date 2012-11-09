@@ -13,7 +13,12 @@ module.exports = (imageDir) ->
       require("./jquery")
       require("./title")
       require("./image")(imageDir)
-    ], done
+    ], (err, ob) ->
+      return done err if err
+      result = {}
+      for k, v of ob when k[0] isnt "_"
+        result[k] = v
+      done null, result
 
 
 
