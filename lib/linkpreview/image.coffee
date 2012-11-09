@@ -23,7 +23,7 @@ module.exports = (targetDir) -> (ob, done) ->
   fileStream.on "end", ->
 
     resize sourcePath, [
-      max: 50
+      max: 100
     ]
     , targetDir
     , (err, imageId) ->
