@@ -9,8 +9,9 @@ module.exports = (ob, done) ->
     return done err if err
 
     if res?.statusCode is 200
-      ob.res = res
-      ob.mime = ob.res.headers["content-type"].split(";")[0].trim()
+      ob._res = res
+      ob.headers = res.headers
+      ob.mime = ob._res.headers["content-type"].split(";")[0].trim()
       console.log "headers set"
       return done null,  ob
 
