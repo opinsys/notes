@@ -4,6 +4,8 @@ path = require "path"
 async = require "async"
 uuid = require "node-uuid"
 gm = require "gm"
+filed = require "filed"
+
 
 imageDir = path.join(__dirname,  "/../upload/")
 
@@ -29,9 +31,7 @@ module.exports =
 
   get: (req, res, next) ->
     imageId = req.params.imageId
-
-    stream = fs.createReadStream imageDir + imageId
-    stream.pipe(res)
+    filed(path.join imageDir, imageId).pipe(res)
 
   post: (req, res, next) ->
     image = req.files.image
