@@ -27,7 +27,7 @@ define [
 
     viewJSON: ->
       if @linkPreview.imageId
-        @linkPreview.imageURL = "/image/#{ @linkPreview.imageId }"
+        @linkPreview.imageURL = "/image/#{ @linkPreview.imageId }.jpg"
       return @linkPreview
 
     render: ->

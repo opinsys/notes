@@ -41,7 +41,7 @@ module.exports = (sourceImagePath, formats, targetDir, done) ->
       gm(sourceImagePath).resize(
         downScaled.width
         downScaled.height
-      ).write(newFilePath + opts.suffix, cb)
+      ).write(newFilePath + opts.suffix + ".jpg", cb)
 
     , (err) ->
       return done err if err
