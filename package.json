@@ -23,6 +23,7 @@
     "node-uuid": "",
     "gm": "",
     "async": "",
+    "memoize": "",
     "redis": ""
   },
   "devDependencies": {
