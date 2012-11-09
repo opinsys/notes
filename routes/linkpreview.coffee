@@ -1,6 +1,8 @@
-getLinkPreview = require "../lib/linkpreview"
+path = require "path"
 
-module.exports = (req, res) ->
+getLinkPreview = require("../lib/linkpreview")(path.join __dirname, "../upload")
+
+module.exports = (req, res, next) ->
   getLinkPreview req.body.url, (err, info) ->
-    throw err if err
+    next err if err
     res.send info

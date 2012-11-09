@@ -5,7 +5,7 @@ async = require "async"
 
 
 module.exports = (imageDir) ->
-  getLinkPreview = (url, done) ->
+  return getLinkPreview = (url, done) ->
     async.waterfall [
       (cb) -> cb null, url: url
       require("./head")
