@@ -1,1 +1,14 @@
-<a href="{{url}}" target=_blank>{{title}}</a>
+
+
+<a href="{{url}}" target=_blank>
+{{#if imageURL}}
+<img src="{{imageURL}}">
+{{/if}}
+
+{{#if title}}
+  {{title}}
+{{else}}
+  {{url}}
+{{/if}}
+
+</a>

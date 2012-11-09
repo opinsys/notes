@@ -21,11 +21,14 @@ define [
       linkPreview(opts.link).done((linkPreview) =>
         @linkPreview = linkPreview
         @render()
+      ).fail (err) =>
+        console.log "linkpreview failed", err
+        throw new Error "linkpreview failed"
 
-      ).fail =>
-        console.log "failed load link preview"
-
-    viewJSON: -> @linkPreview
+    viewJSON: ->
+      if @linkPreview.imageId
+        @linkPreview.imageURL = "/image/#{ @linkPreview.imageId }"
+      return @linkPreview
 
     render: ->
       if @linkPreview
