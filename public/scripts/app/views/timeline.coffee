@@ -36,12 +36,12 @@ define [
       @bindTo @collection, "add", (model) =>
         @setItemViews()
         @renderViews()
-        @scrollToBottom() if Notes.global.get("autoScroll")
+        @scrollToBottom()
 
       @setItemViews()
 
       $(window).on "resize", _.debounce =>
-        @scrollToBottom() if Notes.global.get("autoScroll")
+        @scrollToBottom()
       , 300
 
     getItemView: (model) ->
@@ -80,6 +80,8 @@ define [
       return res
 
     scrollToBottom: ->
+      if not Notes.global.get("autoScroll")
+        return
       if Modernizr.touch
         @iscroll.scrollToElement(".last")
       else
@@ -93,7 +95,7 @@ define [
         @iscroll = new iScroll @$(".item-container").get(0),
           vScrollbar: true
           onScrollEnd: => @setAutoScroll()
-        @scrollToBottom() if Notes.global.get("autoScroll")
+        @scrollToBottom()
       , 5
 
       # WTF: this does not work from the events-object?!
