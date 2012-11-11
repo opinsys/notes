@@ -31,27 +31,40 @@ define [
     constructor: ->
       super
 
-      @bindTo @collection, "add change", =>
-        @setItems()
-        @render()
+      @itemViews = {}
 
-      @setItems()
+      @bindTo @collection, "add", (model) =>
+        @setItemViews()
+        @renderViews()
+        @scrollToBottom() if Notes.global.get("autoScroll")
+
+      @setItemViews()
 
       $(window).on "resize", _.debounce =>
         @scrollToBottom() if Notes.global.get("autoScroll")
       , 300
 
+    getItemView: (model) ->
+      if view = @itemViews[model.cid]
+        return view
+      return @itemViews[model.cid] = new TextItem
+        model: model
+
 
     elements:
       "scrollContainer": ".item-container-wrap"
 
-    setItems: ->
+    setItemViews: ->
       @collection.sort()
 
-      items = @collection.map (model) =>
-        new TextItem model: model
-      _.last(items)?.$el.addClass "last"
-      @setViews ".item-container", items
+      @setViews ".item-container", @collection.map (model) =>
+        view = @getItemView(model)
+        view.$el.removeClass("last")
+        return view
+
+      if views = @getViews(".item-container")
+        _.last(views)?.$el.addClass("last")
+
 
     isScrollAtBottom: ->
       if Modernizr.touch
@@ -85,6 +98,7 @@ define [
 
       # WTF: this does not work from the events-object?!
       @scrollContainer.on "scroll", => @setAutoScroll()
+
 
     setAutoScroll: ->
       Notes.global.set autoScroll: @isScrollAtBottom()

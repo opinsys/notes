@@ -29,8 +29,6 @@ define [
     constructor: (opts) ->
       super
 
-      console.log @model.id
-      console.log "model to NotesName", @model
       @setViews "header", new NotesName
         model: @model
 
