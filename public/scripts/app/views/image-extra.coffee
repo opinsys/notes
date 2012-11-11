@@ -1,15 +1,15 @@
 define [
   "backbone"
+  "puppetview"
 
-  "cs!app/view"
   "hbs!app/templates/image-extra"
 ], (
   Backbone
+  PuppetView
 
-  View
   template
 ) ->
-  class ImageExtra extends View
+  class ImageExtra extends PuppetView
     className: "bb-image-extra"
     template: template
     viewJSON: -> imageURL: @model.getImageURL()

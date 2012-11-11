@@ -1,5 +1,5 @@
 define [
-  "cs!app/layout"
+  "viewmaster"
   "iscroll"
   "underscore"
 
@@ -8,7 +8,7 @@ define [
   "cs!app/views/text-item"
   "cs!app/notes"
 ], (
-  Layout
+  ViewMaster
   iScroll
   _
 
@@ -24,7 +24,7 @@ define [
     return Math.abs(a - b) <= threshold
 
 
-  class Timeline extends Layout
+  class Timeline extends ViewMaster
     className: "bb-timeline"
     template: template
 
@@ -51,7 +51,7 @@ define [
       items = @collection.map (model) =>
         new TextItem model: model
       _.last(items)?.$el.addClass "last"
-      @_setView ".item-container", items
+      @setViews ".item-container", items
 
     isScrollAtBottom: ->
       if Modernizr.touch

@@ -1,14 +1,14 @@
 define [
   "underscore"
-  "cs!app/layout"
+  "puppetview"
   "hbs!app/templates/notes-name"
 ], (
   _
-  Layout
+  PuppetView
   template
 ) ->
 
-  class NotesName extends Layout
+  class NotesName extends PuppetView
 
     className: "bb-notes-name"
     template: template
@@ -43,7 +43,6 @@ define [
       console.log "editStop"
       @editActive = false
       @updateName()
-      
 
     updateName: ->
       console.log "blue keyup paste"

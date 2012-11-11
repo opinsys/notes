@@ -1,7 +1,7 @@
 define [
   "backbone"
 
-  "cs!app/view"
+  "puppetview"
   "cs!app/utils/upload"
   "cs!app/models/text-item.model"
   "hbs!app/templates/sendform"
@@ -9,7 +9,7 @@ define [
 ], (
   Backbone
 
-  View
+  PuppetView
   upload
   TextItemModel
   template
@@ -31,7 +31,7 @@ define [
     return dfd.promise()
 
 
-  class SendForm extends View
+  class SendForm extends PuppetView
 
     className: "bb-send-form"
     template: template

@@ -1,7 +1,7 @@
 define [
-  "cs!app/layout"
-  "iscroll"
   "underscore"
+  "iscroll"
+  "viewmaster"
 
   "cs!app/views/send-form"
   "hbs!app/templates/notes-layout"
@@ -10,9 +10,9 @@ define [
   "cs!app/views/text-item"
   "cs!app/views/timeline"
 ], (
-  Layout
-  iScroll
   _
+  iScroll
+  ViewMaster
 
   SendForm
   template
@@ -22,19 +22,21 @@ define [
   Timeline
 ) ->
 
-  class NotesLayout extends Layout
+  class NotesLayout extends ViewMaster
     className: "bb-notes-layout"
     template: template
 
-    constructor: ->
+    constructor: (opts) ->
       super
 
-      @_setView "header", new NotesName
+      console.log @model.id
+      console.log "model to NotesName", @model
+      @setViews "header", new NotesName
         model: @model
 
-      @_setView ".send-form-container", new SendForm
+      @setViews ".send-form-container", new SendForm
         collection: @collection
 
-      @_setView ".timeline-container", new Timeline
+      @setViews ".timeline-container", new Timeline
         collection: @collection
 

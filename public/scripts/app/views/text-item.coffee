@@ -2,7 +2,7 @@ define [
   "backbone"
   "moment-fi"
 
-  "cs!app/layout"
+  "viewmaster"
   "cs!app/views/link-extra"
   "cs!app/views/image-extra"
   "cs!app/models/text-item.model"
@@ -11,7 +11,7 @@ define [
   Backbone
   moment
 
-  Layout
+  ViewMaster
   LinkExtra
   ImageExtra
   TextItemModel
@@ -21,7 +21,7 @@ define [
     exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig
     return text.replace(exp,"<a href='$1' target=_blank>$1</a>")
 
-  class TextItem extends Layout
+  class TextItem extends ViewMaster
 
     moment.lang('fi')
 
@@ -41,7 +41,7 @@ define [
         extras.push new ImageExtra
           model: @model
 
-      @_setView ".extras", extras
+      @setViews ".extras", extras
 
     viewJSON: ->
       json = @model.toJSON()

@@ -39,6 +39,8 @@ require.config({
     "backbone.io": "vendor/backbone.io",
     "coffee-script": "vendor/coffee-script",
     "backbone.sharedcollection": "vendor/backbone.sharedcollection/src/backbone.sharedcollection",
-    iscroll: "vendor/iscroll"
+    iscroll: "vendor/iscroll",
+    "viewmaster": "vendor/backbone.viewmaster/backbone.viewmaster",
+    "puppetview": "vendor/backbone.viewmaster/backbone.viewmaster"
   }
 });
