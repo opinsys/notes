@@ -8,13 +8,13 @@ module.exports = (ob, done) ->
   request.head ob.url, (err, res) ->
     return done err if err
 
-    if res?.statusCode is 200
+    if res?.headers["content-type"]
       ob._res = res
       ob.headers = res.headers
       ob.mime = ob._res.headers["content-type"].split(";")[0].trim()
       console.log "headers set"
       return done null,  ob
 
-    return done new Error "request failed on: #{ ob.url }"
+    return done new Error "cannot find content-type for #{ ob.url }"
 
 
