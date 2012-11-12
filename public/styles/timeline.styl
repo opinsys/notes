@@ -2,19 +2,25 @@
 @import "mediaqueries"
 
 // Structure
+.timeline-container
+  height 80%
 .bb-timeline
-
+  bottom 0
+  height 100%
+  left 0
+  position relative
+  right 0
+  top 0
   .item-container-wrap
-    bottom 85px
+    bottom 0
     left 0
     margin 0
-    padding 1em
+    padding 0
     position absolute
-    top 65px
+    top 0
     width 100%
     z-index 1
     overflow auto
-
 
   .send-form-container
     bottom 0px
@@ -23,22 +29,28 @@
 
 // ipad scroll fix
 .touch .bb-timeline .item-container
-  padding-bottom 50px
+  padding-bottom 2em
 
+@media landscapeTablet
+  .timeline-container
+    height 80%
 
-/*media screen and (min-width:1280px)
-  .bb-timeline
-    .item-container-wrap
-      bottom 10px
-      width 60%*/
+@media portraitTablet
+  .timeline-container
+    height auto
+    .bb-timeline
+      position static
+      .item-container-wrap
+        bottom 110px
+        left 0
+        margin 0
+        padding 1em
+        position absolute
+        top 65px
+        width 100%
+        z-index 1
+        overflow auto
 
-
-@media landscapeTabled
-  .bb-timeline .item-container-wrap
-      bottom 110px
-      padding-bottom 3em
-
-
-@media portraitTabled
-  .bb-timeline .item-container-wrap
-      bottom 110px
+@media smallHeight
+  .timeline-container
+    height 70%

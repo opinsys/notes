@@ -94,6 +94,10 @@ a img {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+html,
+body {
+  height: 100%;
+}
 body {
   background-color: #f0eee1;
   font: 100%/1.5 "Helvetica neue", Helvetica, Arial, sans-serif;
@@ -129,15 +133,23 @@ img {
   font-size: 300%;
 }
 .bb-notes-layout {
+  height: 100%;
   margin: 0 auto;
-  padding: 1em;
+  max-width: 1024px;
+  padding: 1em 0;
+  position: relative;
   width: 100%;
 }
 .bb-notes-layout header {
-  position: absolute;
+  line-height: 1;
+  padding: 0 0 0.5em 0.5em;
+  position: relative;
   top: 0px;
 }
-@media screen and (max-device-width:1024px) and (orientation: landscape) {
+.bb-notes-layout header h1 {
+  font-size: 190%;
+}
+@media screen and (max-device-width:1200px) and (orientation: landscape) {
   .bb-notes-layout {
     padding: 0;
   }
@@ -145,21 +157,32 @@ img {
     padding: 0 1em;
   }
 }
-@media screen and (max-width:768px) {
+@media screen and (max-device-width:800px) and (orientation: portrait) {
   .bb-notes-layout {
     padding: 0;
   }
   .bb-notes-layout header {
-    padding: 0 1em;
+    padding: 0.5em;
   }
+}
+.timeline-container {
+  height: 80%;
+}
+.bb-timeline {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: relative;
+  right: 0;
+  top: 0;
 }
 .bb-timeline .item-container-wrap {
-  bottom: 85px;
+  bottom: 0;
   left: 0;
   margin: 0;
-  padding: 1em;
+  padding: 0;
   position: absolute;
-  top: 65px;
+  top: 0;
   width: 100%;
   z-index: 1;
   overflow: auto;
@@ -170,67 +193,91 @@ img {
   z-index: 100;
 }
 .touch .bb-timeline .item-container {
-  padding-bottom: 50px;
+  padding-bottom: 2em;
 }
-@media screen and (max-device-width:1024px) and (orientation: landscape) {
-  .bb-timeline .item-container-wrap {
-    bottom: 110px;
-    padding-bottom: 3em;
+@media screen and (max-device-width:1200px) and (orientation: landscape) {
+  .timeline-container {
+    height: 80%;
   }
 }
-@media screen and (max-width:768px) {
-  .bb-timeline .item-container-wrap {
+@media screen and (max-device-width:800px) and (orientation: portrait) {
+  .timeline-container {
+    height: auto;
+  }
+  .timeline-container .bb-timeline {
+    position: static;
+  }
+  .timeline-container .bb-timeline .item-container-wrap {
     bottom: 110px;
+    left: 0;
+    margin: 0;
+    padding: 1em;
+    position: absolute;
+    top: 65px;
+    width: 100%;
+    z-index: 1;
+    overflow: auto;
   }
 }
-.bb-send-form {
+@media screen and (max-height: 580px) {
+  .timeline-container {
+    height: 70%;
+  }
+}
+.send-form-container {
+  height: 10%;
+  position: relative;
+}
+.send-form-container .bb-send-form {
   bottom: 0;
-  left: 0;
+  max-height: 100%;
   padding: 0.25em;
-  position: fixed;
+  position: absolute;
   width: 100%;
   z-index: 9999;
 }
-.bb-send-form textarea {
+.send-form-container .bb-send-form textarea {
   margin: 0;
   max-height: 100px;
   max-width: 100%;
   min-height: 40px;
   width: 100%;
 }
-.bb-send-form .button-container {
+.send-form-container .bb-send-form .button-container {
+  padding-bottom: 0.25em;
   position: relative;
 }
-.bb-send-form .button-container .auto-scroll,
-.bb-send-form .button-container .auto-scroll-open {
+.send-form-container .bb-send-form .button-container .auto-scroll,
+.send-form-container .bb-send-form .button-container .auto-scroll-open {
   margin-left: 2%;
 }
-.bb-send-form .button-container .fake-file-input,
-.bb-send-form .button-container button {
+.send-form-container .bb-send-form .button-container .fake-file-input,
+.send-form-container .bb-send-form .button-container button {
   min-width: 95px;
 }
-.bb-send-form .button-container .fake-file-input {
+.send-form-container .bb-send-form .button-container .fake-file-input {
   display: inline-block;
   height: 26px;
   line-height: 2;
   position: relative;
   width: 10%;
 }
-.bb-send-form .button-container .fake-file-input:hover {
+.send-form-container .bb-send-form .button-container .fake-file-input:hover {
   cursor: pointer;
 }
-.bb-send-form .button-container .fake-file-input:before {
+.send-form-container .bb-send-form .button-container .fake-file-input:before {
   content: "+";
   padding-right: 0.25em;
 }
-.bb-send-form .button-container .fake-file-input input[type="file"] {
+.send-form-container .bb-send-form .button-container .fake-file-input input[type="file"] {
   height: 26px;
   left: 0;
   position: absolute;
   top: 0;
   width: 100%;
 }
-.bb-send-form .button-container button {
+.send-form-container .bb-send-form .button-container button {
+  height: 26px;
   float: right;
   padding: 0.5em;
   -webkit-user-select: none;
@@ -239,53 +286,88 @@ img {
   user-select: none;
   width: 10%;
 }
-.bb-send-form .button-container button:hover {
+.send-form-container .bb-send-form .button-container button:hover {
   cursor: pointer;
 }
-.bb-send-form .image-preview img {
+.send-form-container .bb-send-form .image-preview img {
   max-height: 200px;
   height: auto;
 }
-@media screen and (max-device-width:1024px) and (orientation: landscape) {
-  .bb-send-form .button-container .auto-scroll,
-  .bb-send-form .button-container .auto-scroll-open {
+@media screen and (max-device-width:1200px) and (orientation: landscape) {
+  .send-form-container .bb-send-form {
+    max-height: 100%;
+    padding: 0.5em;
+  }
+  .send-form-container .bb-send-form .button-container .auto-scroll,
+  .send-form-container .bb-send-form .button-container .auto-scroll-open {
     font-size: 120%;
     height: 52px;
     position: absolute;
     top: 25%;
   }
-  .bb-send-form .button-container .fake-file-input {
-    height: 52px;
+  .send-form-container .bb-send-form .button-container .fake-file-input {
+    font-size: 120%;
     line-height: 0;
   }
-  .bb-send-form .button-container .fake-file-input input[type="file"] {
+  .send-form-container .bb-send-form .button-container .fake-file-input i {
+    font-size: 120%;
+  }
+  .send-form-container .bb-send-form .button-container .fake-file-input button {
+    font-size: 100%;
+  }
+  .send-form-container .bb-send-form .button-container .fake-file-input input[type="file"] {
     height: 52px;
   }
-  .bb-send-form .button-container button,
-  .bb-send-form .button-container .fake-file-input {
+  .send-form-container .bb-send-form .button-container button,
+  .send-form-container .bb-send-form .button-container .fake-file-input {
+    height: 52px;
     padding: 1em;
     width: 20%;
   }
 }
-@media screen and (max-width:768px) {
-  .bb-send-form .button-container .auto-scroll,
-  .bb-send-form .button-container .auto-scroll-open {
+@media screen and (max-device-width:800px) and (orientation: portrait) {
+  .send-form-container {
+    height: auto;
+    position: static;
+  }
+  .send-form-container .bb-send-form {
+    bottom: 0;
+    left: 0;
+    padding: 0.25em;
+    position: fixed;
+    width: 100%;
+    z-index: 9999;
+  }
+  .send-form-container .bb-send-form .button-container .auto-scroll,
+  .send-form-container .bb-send-form .button-container .auto-scroll-open {
     font-size: 120%;
     height: 52px;
     position: absolute;
     top: 25%;
   }
-  .bb-send-form .button-container .fake-file-input {
-    height: 52px;
+  .send-form-container .bb-send-form .button-container .fake-file-input {
+    font-size: 120%;
     line-height: 0;
   }
-  .bb-send-form .button-container .fake-file-input input[type="file"] {
+  .send-form-container .bb-send-form .button-container .fake-file-input i {
+    font-size: 120%;
+  }
+  .send-form-container .bb-send-form .button-container .fake-file-input button {
+    font-size: 100%;
+  }
+  .send-form-container .bb-send-form .button-container .fake-file-input input[type="file"] {
     height: 52px;
   }
-  .bb-send-form .button-container button,
-  .bb-send-form .button-container .fake-file-input {
+  .send-form-container .bb-send-form .button-container button,
+  .send-form-container .bb-send-form .button-container .fake-file-input {
+    height: 52px;
     padding: 1em;
     width: 20%;
+  }
+}
+@media screen and (max-height: 580px) {
+  .send-form-container {
+    height: 15%;
   }
 }
 .bb-text-item {
@@ -295,10 +377,6 @@ img {
 }
 .bb-text-item p {
   word-wrap: break-word;
-}
-.bb-text-item:first-of-type {
-  border-top: 1px solid #eceada;
-  padding-top: 1em;
 }
 .bb-text-item .created {
   display: block;
@@ -402,6 +480,9 @@ img {
   border-bottom: 1px solid #eceada;
   font-size: 100%;
 }
+.bb-text-item:last-of-type {
+  border-bottom: none;
+}
 .bb-text-item p {
   color: #333;
 }
@@ -440,31 +521,13 @@ img {
 input[type="file"]:hover {
   cursor: pointer;
 }
-@media screen and (max-device-width:1024px) and (orientation: landscape) {
-  .bb-send-form {
-    padding: 0.5em;
-  }
-  .bb-send-form .button-container .fake-file-input {
-    font-size: 120%;
-  }
-  .bb-send-form .button-container .fake-file-input i {
-    font-size: 120%;
-  }
-  .bb-send-form .button-container button {
-    font-size: 100%;
+@media screen and (max-device-width:1200px) and (orientation: landscape) {
+  .bb-notes-layout header h1 {
+    font-size: 140%;
   }
 }
-@media screen and (max-width:768px) {
-  .bb-send-form {
-    padding: 0.5em;
-  }
-  .bb-send-form .button-container .fake-file-input {
+@media screen and (max-device-width:800px) and (orientation: portrait) {
+  .bb-notes-layout header h1 {
     font-size: 120%;
-  }
-  .bb-send-form .button-container .fake-file-input i {
-    font-size: 120%;
-  }
-  .bb-send-form .button-container button {
-    font-size: 100%;
   }
 }

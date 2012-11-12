@@ -1,23 +1,29 @@
 @import "mediaqueries"
 
 .bb-notes-layout
-
+  height 100%
   margin 0 auto
-  padding 1em
+  max-width 1024px
+  padding 1em 0
+  position relative
   width 100%
 
   header
-    position absolute
+    line-height 1
+    padding 0 0 0.5em 0.5em
+    position relative
     top 0px
+    h1
+      font-size 190%
 
-@media landscapeTabled
+@media landscapeTablet
   .bb-notes-layout
     padding 0
     header
       padding 0 1em
 
-@media portraitTabled
+@media portraitTablet
   .bb-notes-layout
     padding 0
     header
-      padding 0 1em
+      padding 0.5em
