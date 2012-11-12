@@ -25,7 +25,9 @@
     "async": "",
     "memoize": "",
     "filed": "",
-    "redis": ""
+    "redis": "",
+    "request": "",
+    "jsdom": ""
   },
   "devDependencies": {
     "yalr": ""
