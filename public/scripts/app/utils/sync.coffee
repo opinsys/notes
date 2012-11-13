@@ -49,15 +49,37 @@ define [
         room: id
 
       sockjsEmitter.on "#{ id }:add", (msg) ->
-        console.log "cool, i should add", msg
         model = new coll.model msg.model
         model.synced = true
         coll.add model
 
+      sockjsEmitter.on "#{ id }:change", (msg) ->
+        console.log "cool, i should update", msg
+
+        if model = coll.get(msg.model.id)
+          model.set msg.model, local: true
+        else
+          console.warn "Cannot update model. id not found:", msg
 
 
       sockjsEmitter.on "#{ id }:initdone", ->
         coll.trigger "initdone"
+
+      coll.on "change", (model, options) ->
+        # If model is not yet synced there is nothing to update on remotes
+        if not model.synced
+          return
+
+        if options.local
+          return console.log "local update, skipping send"
+
+        sock.send JSON.stringify
+          cmd: "change"
+          room: id
+          model: _.extend(
+            {id: model.id},
+            model.changedAttributes()
+          )
 
       coll.on "add", (model) ->
         if not model.id

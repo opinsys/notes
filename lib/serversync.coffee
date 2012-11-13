@@ -56,6 +56,11 @@ sync = (server, options) ->
       room.others conn, (other) ->
         other.write JSON.stringify msg
 
+    change: (conn, msg) ->
+      room = rooms.get(msg.room)
+      room.others conn, (other) ->
+        other.write JSON.stringify msg
+
     broadcast: ->
 
   sjsServer.on "connection", (conn) ->
