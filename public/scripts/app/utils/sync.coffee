@@ -29,8 +29,11 @@ define [
     sock.onmessage = (e) ->
       msg = JSON.parse e.data
       console.log "got sockjs message", msg
+      if not msg.room
+        return console.error "room missing from", msg
       if not msg.cmd
         return console.error "cmd missing from", msg
+
       sockjsEmitter.trigger(
         (msg.room + ":" + msg.cmd),
         _.omit(msg, "cmd", "room")
