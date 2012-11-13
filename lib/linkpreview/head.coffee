@@ -6,11 +6,13 @@ module.exports = (ob, done) ->
   console.log "setting headers"
 
   request.head ob.url, (err, res) ->
+    errorMessage = "Virheellinen linkki"
+
     if err
-      ob.error = "Virheellinen linkki"
+      ob.error = errorMessage
       return done null, ob
     if res?.statusCode == 404
-      ob.error = "Virheellinen linkki"
+      ob.error = errorMessage
       return done null, ob
 
     if res?.headers["content-type"]
