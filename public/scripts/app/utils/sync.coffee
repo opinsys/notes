@@ -72,8 +72,21 @@ define [
           room: id
           model: model.toJSON()
 
+  syncModel = (id, model) ->
+    coll = new Backbone.Collection
+    coll.on "initdone", ->
+
+      if remoteModel = coll.get(model.id)
+        remoteModel.on "change", ->
+          model.set remoteModel.toJSON()
+        model.on "change", ->
+          remoteModel.set model.toJSON()
+      else
+        coll.add model
+
+    syncCollection(id, coll)
 
   return {
     collection: syncCollection
-    model: (id, model) ->
+    model: syncModel
   }
