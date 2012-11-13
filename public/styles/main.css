@@ -304,6 +304,17 @@ img {
   display: block;
   margin-top: 0.25em;
 }
+.bb-link-extra iframe {
+  vertical-align: middle;
+  padding-right: 10px;
+}
+.bb-link-extra img {
+  vertical-align: middle;
+  padding-right: 10px;
+}
+.bb-link-extra img.og {
+  height: 68px;
+}
 .bb-send-form {
   background-color: rgba(230,230,220,0.75);
 }
