@@ -4,7 +4,7 @@ request = require "request"
 
 module.exports = (ob, done) ->
 
-  if not ob._res.headers
+  if not ob._res?.headers
     return done null, ob
 
   if ob.mime isnt "text/html"

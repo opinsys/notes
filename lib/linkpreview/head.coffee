@@ -6,7 +6,9 @@ module.exports = (ob, done) ->
   console.log "setting headers"
 
   request.head ob.url, (err, res) ->
-    return done err if err
+    if err
+      ob.error = "Virheellinen linkki"
+      return done null, ob
 
     if res?.headers["content-type"]
       ob._res = res
