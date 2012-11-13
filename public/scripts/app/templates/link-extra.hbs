@@ -5,30 +5,39 @@
 
 {{else}}
 
-  <a href="{{url}}" target=_blank>
+  {{#if youtube}}
 
-  {{#if imageURL}}
-  <img src="{{imageURL}}">
-  {{/if}}
-
-  {{#if og.image  }}
-    <img src="{{og.image}}" />
-  {{else}}
-    {{#if faviconUrl}}
-      <img src="{{faviconUrl}}" />
+    {{{youtube.html}}}
+    {{#if og.title}}
+      {{og.title}}
     {{/if}}
-  {{/if}}
-    
-  {{#if og.title}}
-    {{og.title}}
   {{else}}
-    {{#if title}}
-      {{title}}
-    {{else}}
-      {{url}}
-    {{/if}}
-  {{/if}}  
   
-  </a>
-
+    <a href="{{url}}" target=_blank>
+  
+    {{#if imageURL}}
+    <img src="{{imageURL}}" />
+    {{/if}}
+  
+    {{#if og.image  }}
+      <img src="{{og.image}}" class="og" />
+    {{else}}
+      {{#if faviconUrl}}
+        <img src="{{faviconUrl}}" />
+      {{/if}}
+    {{/if}}
+      
+    {{#if og.title}}
+      {{og.title}}
+    {{else}}
+      {{#if title}}
+        {{title}}
+      {{else}}
+        {{url}}
+      {{/if}}
+    {{/if}}  
+    
+    </a>
+  
+  {{/if}}
 {{/if}}
