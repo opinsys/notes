@@ -32,5 +32,6 @@ module.exports = (targetDir) -> (ob, done) ->
       # TODO: unlink orig
 
       console.log "image set", imageId
+      console.log "WROTE IMAGES", imageId
       ob.imageId = imageId
       return done null, ob
