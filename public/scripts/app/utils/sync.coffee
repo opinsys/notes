@@ -22,9 +22,13 @@ define [
 
     sock = new SockJS "/sockjs_sync"
 
-    sock.onopen = ->
+    sock.onopen = (foo, bar) ->
       dfd.resolve(sock)
       console.log "SockJS connected"
+
+    sock.onclose = (e) ->
+      console.log "SockJS disconnected", e
+      dfd.reject e
 
     sock.onmessage = (e) ->
       msg = JSON.parse e.data
@@ -39,6 +43,9 @@ define [
       )
 
     return dfd.promise()
+
+  sockPromise.fail ->
+    alert "Pahoittelut, mutta selaimesi ei pysty yhdistämään palvelimeen."
 
   syncCollection = (id, coll) ->
     sockPromise.done (sock) ->
@@ -58,7 +65,6 @@ define [
           model.set msg.model, local: true
         else
           console.warn "Cannot update model. id not found:", msg
-
 
       sockjsEmitter.on "#{ id }:initdone", ->
         coll.trigger "initdone"

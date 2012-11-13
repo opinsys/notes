@@ -1,6 +1,7 @@
 
 sockjs = require "sockjs"
 
+
 class Room
 
   constructor: ->
@@ -76,7 +77,6 @@ sync = (server, options) ->
         other.write JSON.stringify msg
       room.update(msg.model)
 
-    broadcast: ->
 
   sjsServer.on "connection", (conn) ->
 
