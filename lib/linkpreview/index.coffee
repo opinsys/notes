@@ -14,6 +14,7 @@ module.exports = (imageDir) ->
       require("./title")
       require("./favicon")
       require("./og")
+      require("./youtube")
       require("./image")(imageDir)
     ], (err, ob) ->
       return done err if err
