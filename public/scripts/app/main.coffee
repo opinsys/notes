@@ -40,6 +40,6 @@ define [
   view.render()
   $("body").append(view.el)
 
-  sync.collection(NOTES_ID, timeline)
-  sync.model("meta" + NOTES_ID, metaModel)
+  sync.collection("items:" + NOTES_ID, timeline)
+  sync.model("meta:" + NOTES_ID, metaModel)
 
