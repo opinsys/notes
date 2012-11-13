@@ -23,7 +23,7 @@ define [
         @render()
       ).fail (err) =>
         console.log "linkpreview failed", err
-        throw new Error "linkpreview failed"
+        @remove()
 
     viewJSON: ->
       if @linkPreview.imageId
