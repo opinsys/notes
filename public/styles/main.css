@@ -424,8 +424,8 @@ img {
 .bb-text-item .extras > div {
   padding: 5px;
   border: 1px dotted #ed7113;
-  font-size: 8pt;
-  margin: 5px;
+  font-size: 11pt;
+  margin: 0px;
 }
 .no-touch ::-webkit-scrollbar {
   width: 12px;
