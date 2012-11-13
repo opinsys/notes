@@ -5,6 +5,7 @@ class Room
 
   constructor: ->
     @members = []
+    @docs = []
 
   has: (item) ->
     @members.indexOf(item) isnt -1
@@ -17,6 +18,9 @@ class Room
     if not @has(item)
       @members.push item
     item
+
+  addDoc: (doc) ->
+    @docs.push doc
 
 class RoomManager
 
@@ -39,13 +43,14 @@ sync = (server, options) ->
   handlers =
     join: (conn, msg) ->
       room = rooms.get(msg.room)
-      room.add conn
+      room.add(conn)
+      for doc in room.docs
+        conn.write JSON.stringify doc
 
     add: (conn, msg) ->
       room = rooms.get(msg.room)
-      console.log "sending to", msg.room, room.members.length - 1
+      room.addDoc(msg)
       room.others conn, (other) ->
-        console.log "send"
         other.write JSON.stringify msg
 
     broadcast: ->
