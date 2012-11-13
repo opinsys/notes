@@ -9,6 +9,9 @@ module.exports = (ob, done) ->
     if err
       ob.error = "Virheellinen linkki"
       return done null, ob
+    if res?.statusCode == 404
+      ob.error = "Virheellinen linkki"
+      return done null, ob
 
     if res?.headers["content-type"]
       ob._res = res
