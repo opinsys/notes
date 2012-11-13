@@ -11,8 +11,9 @@ module.exports = (ob, done) ->
 
   embed = ob.$('head link[type="application/json+oembed"]')
 
-  if embed
+  if not embed.attr("href")
+    return done null, ob
 
-    request embed.attr("href"), (err, res) ->
-      ob.youtube = JSON.parse res.body
-      done null, ob
+  request embed.attr("href"), (err, res) ->
+    ob.youtube = JSON.parse res.body
+    done null, ob
