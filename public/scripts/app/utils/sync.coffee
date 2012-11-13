@@ -40,6 +40,8 @@ define [
               model.set syncModel.toJSON()
               syncModel.on "change", ->
                 model.set syncModel.toJSON()
+              model.on "change", ->
+                syncModel.set model.toJSON()
             else
               syncColl.add model
   }
