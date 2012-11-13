@@ -46,6 +46,9 @@ sync = (server, options) ->
       room.add(conn)
       for doc in room.docs
         conn.write JSON.stringify doc
+      conn.write JSON.stringify
+        room: msg.room
+        cmd: "initdone"
 
     add: (conn, msg) ->
       room = rooms.get(msg.room)
@@ -66,7 +69,5 @@ sync = (server, options) ->
         return
 
       handlers[msg.cmd]?(conn, msg)
-
-
 
 module.exports = sync

@@ -51,6 +51,11 @@ define [
         model.synced = true
         coll.add model
 
+
+
+      sockjsEmitter.on "#{ id }:initdone", ->
+        coll.trigger "initdone"
+
       coll.on "add", (model) ->
         if not model.id
           model.set id: uuid()
