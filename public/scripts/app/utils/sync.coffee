@@ -28,7 +28,6 @@ define [
 
     sock.onmessage = (e) ->
       msg = JSON.parse e.data
-      console.log "got sockjs message", msg
       if not msg.room
         return console.error "room missing from", msg
       if not msg.cmd
@@ -54,7 +53,6 @@ define [
         coll.add model
 
       sockjsEmitter.on "#{ id }:change", (msg) ->
-        console.log "cool, i should update", msg
 
         if model = coll.get(msg.model.id)
           model.set msg.model, local: true
@@ -71,7 +69,7 @@ define [
           return
 
         if options.local
-          return console.log "local update, skipping send"
+          return
 
         sock.send JSON.stringify
           cmd: "change"
@@ -99,11 +97,13 @@ define [
     coll.on "initdone", ->
 
       if remoteModel = coll.get(model.id)
+        model.set remoteModel.toJSON()
         remoteModel.on "change", ->
           model.set remoteModel.toJSON()
         model.on "change", ->
           remoteModel.set model.toJSON()
       else
+        console.log "Creating new NOTES"
         coll.add model
 
     syncCollection(id, coll)

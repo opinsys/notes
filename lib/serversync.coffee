@@ -5,7 +5,7 @@ class Room
 
   constructor: ->
     @members = []
-    @docs = []
+    @models = []
 
   has: (item) ->
     @members.indexOf(item) isnt -1
@@ -14,13 +14,21 @@ class Room
     @members.forEach (member) ->
       fn member if member isnt me
 
-  add: (item) ->
+  join: (item) ->
     if not @has(item)
       @members.push item
     item
 
-  addDoc: (doc) ->
-    @docs.push doc
+  add: (model) ->
+    @models.push model
+
+  update: (changes) ->
+    for current in @models
+      if current.id and current.id is changes.id
+        console.log "updating", current, "with", changes
+        for k, v of changes
+          current[k] = v
+
 
 class RoomManager
 
@@ -43,16 +51,22 @@ sync = (server, options) ->
   handlers =
     join: (conn, msg) ->
       room = rooms.get(msg.room)
-      room.add(conn)
-      for doc in room.docs
-        conn.write JSON.stringify doc
+      room.join(conn)
+
+      for model in room.models
+        console.log "sending", model
+        conn.write JSON.stringify
+          room: msg.room
+          cmd: "add"
+          model: model
+
       conn.write JSON.stringify
         room: msg.room
         cmd: "initdone"
 
     add: (conn, msg) ->
       room = rooms.get(msg.room)
-      room.addDoc(msg)
+      room.add(msg.model)
       room.others conn, (other) ->
         other.write JSON.stringify msg
 
@@ -60,6 +74,7 @@ sync = (server, options) ->
       room = rooms.get(msg.room)
       room.others conn, (other) ->
         other.write JSON.stringify msg
+      room.update(msg.model)
 
     broadcast: ->
 
@@ -67,7 +82,6 @@ sync = (server, options) ->
 
     conn.on "data", (data) ->
       msg = JSON.parse data
-      console.log "got msg", msg
 
       if not msg.room
         console.error "Room missing from", msg
