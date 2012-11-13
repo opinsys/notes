@@ -13,6 +13,9 @@ require.config({
     "socket.io": {
       exports: "io"
     },
+    sockjs: {
+      exports: "SockJS"
+    },
     "backbone.io": {
       deps: ["backbone", "socket.io"],
       exports: "Backbone.io"
@@ -41,6 +44,7 @@ require.config({
     "backbone.sharedcollection": "vendor/backbone.sharedcollection/src/backbone.sharedcollection",
     iscroll: "vendor/iscroll",
     "viewmaster": "vendor/backbone.viewmaster/backbone.viewmaster",
-    "puppetview": "vendor/backbone.viewmaster/backbone.viewmaster"
+    "puppetview": "vendor/backbone.viewmaster/backbone.viewmaster",
+    sockjs: "vendor/sockjs"
   }
 });
