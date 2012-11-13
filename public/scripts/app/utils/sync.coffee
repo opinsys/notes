@@ -1,48 +1,71 @@
 define [
   "jquery"
+  "underscore"
+  "backbone"
+  "sockjs"
   "cs!backbone.sharedcollection"
   "cs!app/utils/unwraperr"
 ], (
   $
+  _
+  Backbone
+  SockJS
   SharedCollection
   unwraperr
 ) ->
 
-  shareJSDoc = do ->
-    dfd = new $.Deferred()
-    sharejs.open "notes", "json", unwraperr (err, doc) ->
-      if err
-        dfd.reject err
-      else
-        dfd.resolve doc
+  uuid = -> (((1 + Math.random()) * 65536) | 0).toString(16).substring(1)
+
+  sockjsEmitter = _.extend({}, Backbone.Events)
+  sockPromise = do ->
+    dfd = $.Deferred()
+
+    sock = new SockJS "/sockjs_sync"
+
+    sock.onopen = ->
+      dfd.resolve(sock)
+      console.log "SockJS connected"
+
+    sock.onmessage = (e) ->
+      msg = JSON.parse e.data
+      console.log "got sockjs message", msg
+      if not msg.cmd
+        return console.error "cmd missing from", msg
+      sockjsEmitter.trigger(
+        (msg.room + ":" + msg.cmd),
+        _.omit(msg, "cmd", "room")
+      )
+
     return dfd.promise()
+
+  syncCollection = (id, coll) ->
+    sockPromise.done (sock) ->
+
+      sock.send JSON.stringify
+        cmd: "join"
+        room: id
+
+      sockjsEmitter.on "#{ id }:add", (msg) ->
+        console.log "cool, i should add", msg
+        model = new coll.model msg.model
+        model.synced = true
+        coll.add model
+
+      coll.on "add", (model) ->
+        if not model.id
+          model.set id: uuid()
+
+        if model.synced
+          return
+
+        model.synced = true
+        sock.send JSON.stringify
+          cmd: "add"
+          room: id
+          model: model.toJSON()
 
 
   return {
-    collection: (id, coll) ->
-      shareJSDoc.done (doc) ->
-        coll.collectionId(id)
-        coll.setDoc(doc)
-        coll.fetch
-          error: -> alert "failed to fetch collection data from ShareJS"
-
-      shareJSDoc.fail -> alert "failed to connect to ShareJS"
-
+    collection: syncCollection
     model: (id, model) ->
-      shareJSDoc.done (doc) ->
-        syncColl = new SharedCollection
-        syncColl.collectionId(id)
-        syncColl.setDoc(doc)
-        syncColl.fetch
-          error: -> alert "failed to fetch model data from ShareJS"
-          success: ->
-            if syncModel = syncColl.get(model.id)
-              model.set syncModel.toJSON()
-              syncModel.on "change", ->
-                model.set syncModel.toJSON()
-              model.on "change", ->
-                syncModel.set model.toJSON()
-            else
-              syncColl.add model
   }
-

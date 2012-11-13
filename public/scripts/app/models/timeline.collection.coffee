@@ -1,15 +1,13 @@
 define [
   "backbone"
-  "cs!backbone.sharedcollection"
 
   "cs!app/models/text-item.model"
 ], (
   Backbone
-  SharedCollection
 
   TextItemModel
 ) ->
-  class TimelineCollection extends SharedCollection
+  class TimelineCollection extends Backbone.Collection
 
     model: TextItemModel
 
