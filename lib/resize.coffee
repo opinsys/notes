@@ -36,12 +36,13 @@ module.exports = (sourceImagePath, formats, targetDir, done) ->
     # https://github.com/caolan/async#forEach
     async.forEach formats, (opts, cb) ->
       opts.suffix ?= ""
-
+      target = newFilePath + opts.suffix + ".jpg"
       downScaled = downScale(size, opts.max)
+      console.log "Writing image to", target
       gm(sourceImagePath).resize(
         downScaled.width
         downScaled.height
-      ).autoOrient().write(newFilePath + opts.suffix + ".jpg", cb)
+      ).autoOrient().write(target, cb)
 
     , (err) ->
       return done err if err
