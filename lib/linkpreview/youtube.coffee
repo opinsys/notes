@@ -15,5 +15,5 @@ module.exports = (ob, done) ->
     return done null, ob
 
   request embed.attr("href"), (err, res) ->
-    ob.youtube = JSON.parse res.body
+    #ob.youtube = JSON.parse res.body
     done null, ob
