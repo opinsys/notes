@@ -13,6 +13,7 @@ module.exports = (imageDir) ->
       require("./jquery")
       require("./title")
       require("./favicon")
+      require("./og")
       require("./image")(imageDir)
     ], (err, ob) ->
       return done err if err
@@ -35,3 +36,8 @@ if require.main is module
   getLinkPreview "http://www.yle.fi", (err, ob) ->
     console.log "DONE", err, ob.faviconUrl
 
+  getLinkPreview "http://asdf.asdf", (err, ob) ->
+    console.log "DONE", err
+
+  getLinkPreview "http://www.yle.fi/uutiset", (err, ob) ->
+    console.log "DONE", err, ob.og

@@ -1,6 +1,10 @@
 
-{{#if faviconUrl}}
-  <img src="{{faviconUrl}}" />
+{{#if ogImage }}
+  <img src="{{ogImage}}" />
+{{else}}
+  {{#if faviconUrl}}
+    <img src="{{faviconUrl}}" />
+  {{/if}}
 {{/if}}
 
 

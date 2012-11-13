@@ -28,6 +28,8 @@ define [
     viewJSON: ->
       if @linkPreview.imageId
         @linkPreview.imageURL = "/image/#{ @linkPreview.imageId }.jpg"
+      if @linkPreview.og?['og:image']
+        @linkPreview.ogImage = @linkPreview.og['og:image']
       return @linkPreview
 
     render: ->
