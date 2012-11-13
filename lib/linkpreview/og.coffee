@@ -8,7 +8,8 @@ module.exports = (ob, done) ->
   ob.og = {}
 
   ob.$('meta[property^=og]').each (i, el) ->
-    ob.og[el.getAttribute('property')] = el.getAttribute('content')
+    key = el.getAttribute('property').match(/^og:(.+)/)[1]
+    ob.og[key] = el.getAttribute('content')
 
   
   done null, ob
