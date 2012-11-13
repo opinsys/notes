@@ -3,9 +3,11 @@ http = require('http')
 express = require "express"
 stylus = require "stylus"
 nib = require "nib"
-sharejs = require('share').server
+sync = require "./lib/serversync"
 
 app = express()
+server = require('http').createServer(app)
+
 
 PRODUCTION = null
 app.configure "development", -> PRODUCTION = false
@@ -19,10 +21,6 @@ if PRODUCTION or process.env.REDIS
   dbType = "redis"
 else
   dbType = "none"
-
-sharejs.attach app,
-  db:
-    type: dbType
 
 
 yalrConfig = null
@@ -66,4 +64,5 @@ app.get "/notes/*", (req, res) ->
 app.post "/image", imageRoute.post
 app.get "/image/:imageId", imageRoute.get
 
+sync(server)
 server.listen 3000, -> console.log "listening on 3000"
