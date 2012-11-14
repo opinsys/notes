@@ -41,8 +41,8 @@ define [
 
     constructor: ->
       super
-
       @bindTo Notes.global, "change:autoScroll", @render
+      @$el.removeClass "textarea-focus"
 
     events:
       "click button": "post"
