@@ -1,3 +1,4 @@
+@import "mediaqueries"
 
 // Structure
 .bb-send-form
@@ -22,7 +23,6 @@
     position relative
     .auto-scroll, .auto-scroll-open
       margin-left 2%
-
     .fake-file-input, button
       min-width 95px
     .fake-file-input
@@ -30,7 +30,7 @@
       height 26px
       line-height 2
       position relative
-      width 10%
+      width 95px
       &:hover
         cursor pointer
       &:before
@@ -44,6 +44,7 @@
         width 100%
     button
       float right
+      height 26px
       padding 0.5em
       user-select none
       width 10%
@@ -51,30 +52,16 @@
         cursor pointer
 
   .image-preview
+    height 200px
+    padding 2% 0
     img
-      max-height 200px
+      max-height 98%
       height auto
 
-
-/*@media screen and (min-width:1280px)
-  .bb-send-form
-    bottom 10%
-    left 64%
-    padding 0 1em
-    right 0
-    top 11%
-    width 35%
-    .button-container
-      .fake-file-input
-        width 20%
-    textarea
-      min-height 200px*/
-
-@media screen and (max-device-width:1024px) and (orientation: landscape)
+@media landscapeTablet
   .bb-send-form
     .button-container
       .auto-scroll, .auto-scroll-open
-        font-size 120%
         height 52px
         position absolute
         top 25%
@@ -87,20 +74,19 @@
         padding 1em
         width 20%
 
-@media screen and (max-width:768px)
+@media portraitTablet
 
   .bb-send-form
     .button-container
       .auto-scroll, .auto-scroll-open
-        font-size 120%
         height 52px
         position absolute
         top 25%
       .fake-file-input
-        height 52px
         line-height 0
         input[type="file"]
           height 52px
       button, .fake-file-input
+        height 52px
         padding 1em
         width 20%

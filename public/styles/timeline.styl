@@ -14,8 +14,9 @@
     width 100%
     z-index 1
     overflow auto
-
-
+  &.image-preview-active
+    .item-container-wrap
+      bottom 310px
   .send-form-container
     bottom 0px
     position absolute
@@ -33,12 +34,17 @@
       width 60%*/
 
 
-@media landscapeTabled
-  .bb-timeline .item-container-wrap
+@media landscapeTablet
+  .bb-timeline
+    .item-container-wrap
       bottom 110px
       padding-bottom 3em
 
 
-@media portraitTabled
-  .bb-timeline .item-container-wrap
-      bottom 110px
+@media portraitTablet
+  .bb-timeline
+    .item-container-wrap
+      bottom 140px
+    &.image-preview-active
+      .item-container-wrap
+        bottom 335px

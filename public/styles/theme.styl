@@ -65,7 +65,7 @@ FIXME()
 
 .bb-notes-layout
   h1
-    font-size 300%
+    font-size 200%
     color titleColor
 
 .bb-timeline
@@ -117,24 +117,28 @@ input[type="file"]:hover
     background-color transparent*/
 
 
-@media landscapeTabled
+@media landscapeTablet
   .bb-send-form
     padding 0.5em
     .button-container
-      .fake-file-input
+        font-size 120%
+      .fake-file-input, .auto-scroll, .auto-scroll-open
         font-size 120%
         i
           font-size 120%
       button
         font-size 100%
 
-@media portraitTabled
+@media portraitTablet
   .bb-send-form
     padding 0.5em
     .button-container
-      .fake-file-input
+      .fake-file-input, .auto-scroll, .auto-scroll-open
         font-size 120%
         i
           font-size 120%
       button
         font-size 100%
+  .bb-notes-layout
+    h1
+      font-size 120%

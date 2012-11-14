@@ -1,3 +1,4 @@
+@import "mediaqueries"
 
 // Structure
 .bb-text-item
@@ -13,3 +14,13 @@
   .created
     display block
     margin-top 0.25em
+
+  .extras
+    img
+      max-width 50%
+
+@media smallScreens
+  .bb-text-item
+    .extras
+      img
+        max-width 75%
