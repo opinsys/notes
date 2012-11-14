@@ -42,7 +42,7 @@ class RoomManager
       return room
 
     room = @_rooms[name] = new Room
-    _.extend room, @backend(name: name)
+    _.extend room, @backend(room: name)
     return room
 
   get: (name) -> @ensureRoom(name)
