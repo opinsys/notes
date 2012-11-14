@@ -25,6 +25,9 @@ require.config({
     },
     "iscroll": {
       exports: "iScroll"
+    },
+    "progress": {
+      exports: "Progress"
     }
   },
   paths: {
@@ -45,6 +48,7 @@ require.config({
     iscroll: "vendor/iscroll",
     "viewmaster": "vendor/backbone.viewmaster/backbone.viewmaster",
     "puppetview": "vendor/backbone.viewmaster/backbone.viewmaster",
-    sockjs: "vendor/sockjs"
+    sockjs: "vendor/sockjs",
+    progress: "vendor/progress"
   }
 });
