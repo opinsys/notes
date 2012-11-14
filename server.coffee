@@ -23,7 +23,6 @@ else
   dbType = "none"
 
 
-yalrConfig = null
 app.configure "development", ->
 
   yalrConfig = require("yalr")(
@@ -32,6 +31,11 @@ app.configure "development", ->
       "views"
     ]
   )
+
+  app.use (req, res, next) ->
+   res.locals.yalrConfig = yalrConfig
+   next()
+
 
   compile = (str, path) ->
     stylus(str)
@@ -58,15 +62,13 @@ app.configure ->
 
 
 app.get "/", (req, res) ->
-  res.render "landing",
-    yalrConfig: yalrConfig
+  res.render "landing"
 
 app.post "/", (req, res) -> res.redirect "/notes/" + req.body.name
 app.post "/linkpreview", require "./routes/linkpreview"
 
 app.get "/notes/*", (req, res) ->
-  res.render "notes",
-    yalrConfig: yalrConfig
+  res.render "notes"
 
 app.post "/image", imageRoute.post
 app.get "/image/:imageId", imageRoute.get
