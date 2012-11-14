@@ -18,7 +18,12 @@
 <script>window.require = { baseUrl: "/scripts/" };</script>
 <script src="/scripts/require.js"></script>
 <script src="/scripts/config.js"></script>
+
+{{#if production}}
+<script async src="/scripts/bundle.js"></script>
+{{else}}
 <script async src="/scripts/start.js"></script>
+{{/if}}
 
 {{type}}
 {{#if yalrConfig}}
