@@ -87,7 +87,9 @@ define [
       if @currentImage
         json.imageId = @currentImage.imageId
 
-      @collection.add new TextItemModel json
+      model = new TextItemModel json
+      @collection.add model
+      model.save()
       @clear()
       @render()
 

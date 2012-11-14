@@ -16,102 +16,112 @@ define [
 
   uuid = -> (((1 + Math.random()) * 65536) | 0).toString(16).substring(1)
 
+  addSync = (id, model, sock) ->
+    _.extend model, {
+      isNew: -> !@_synced
+
+      sync: (method, model, options) ->
+        attributes = {}
+
+        if method is "create"
+          model.set "id", uuid() if not model.id
+          _.extend(attributes, model.toJSON())
+          console.log "Creating", model.toJSON()
+
+        else if method is "update"
+          current = model.toJSON()
+          for k, v of model._synced
+            if not _.isEqual(model._synced[k], current[k])
+              attributes[k] = current[k]
+          attributes.id = model.id
+          console.log "Updating", current, "with", attributes
+
+        else
+          throw new Error "unknown method #{ method }"
+
+        if _.isEmpty _.omit(attributes, "id")
+          console.log "No changes, Skipping update from save()"
+          return
+
+        sock.send m =  JSON.stringify
+          method: method
+          room: id
+          attributes: attributes
+        console.log "send", m
+        model._synced = model.toJSON()
+        options.success?()
+      }
+
+
+
   sockjsEmitter = _.extend({}, Backbone.Events)
-  sockPromise = do ->
-    dfd = $.Deferred()
+  sock = new SockJS "/sockjs_sync"
+  dfd = $.Deferred()
+  sockPromise = dfd.promise()
 
-    sock = new SockJS "/sockjs_sync"
+  sock.onopen = (foo, bar) ->
+    dfd.resolve(sock)
+    console.log "SockJS connected"
 
-    sock.onopen = (foo, bar) ->
-      dfd.resolve(sock)
-      console.log "SockJS connected"
+  sock.onclose = (e) ->
+    console.log "SockJS disconnected", e
+    dfd.reject e
 
-    sock.onclose = (e) ->
-      console.log "SockJS disconnected", e
-      dfd.reject e
+  sock.onmessage = (e) ->
+    msg = JSON.parse e.data
+    if not msg.room
+      return console.error "room missing from", msg
+    if not msg.method
+      return console.error "method missing from", msg
 
-    sock.onmessage = (e) ->
-      msg = JSON.parse e.data
-      if not msg.room
-        return console.error "room missing from", msg
-      if not msg.cmd
-        return console.error "cmd missing from", msg
+    console.log "Got", msg
+    sockjsEmitter.trigger(
+      (msg.method + ":" + msg.room),
+      msg.attributes
+    )
 
-      sockjsEmitter.trigger(
-        (msg.room + ":" + msg.cmd),
-        _.omit(msg, "cmd", "room")
-      )
-
-    return dfd.promise()
 
   sockPromise.fail ->
     alert "Pahoittelut, mutta selaimesi ei pysty yhdistämään palvelimeen."
 
+
   syncCollection = (id, coll) ->
+
     sockPromise.done (sock) ->
 
+      coll.each (model) -> addSync(id, model, sock)
+      coll.on "add", (model) -> addSync(id, model, sock)
+
       sock.send JSON.stringify
-        cmd: "join"
+        method: "join"
         room: id
 
-      sockjsEmitter.on "#{ id }:add", (msg) ->
-        model = new coll.model msg.model
-        model.synced = true
-        coll.add model
+      sockjsEmitter.on "create:#{ id }", (attributes) ->
+        console.log "got create event", attributes
 
-      sockjsEmitter.on "#{ id }:change", (msg) ->
+        if current = coll.get(attributes.id)
+          console.log "populating existing model with create", attributes
+          current.clear(silent: true)
+          current.set attributes
+          return
 
-        if model = coll.get(msg.model.id)
-          model.set msg.model, local: true
+        coll.add new coll.model attributes
+
+      sockjsEmitter.on "update:#{ id }", (attributes) ->
+
+        if model = coll.get(attributes.id)
+          model.set attributes
         else
-          console.warn "Cannot update model. id not found:", msg
+          console.warn "Cannot update model. id not found:", attributes
 
       sockjsEmitter.on "#{ id }:initdone", ->
+        console.log "INIT DONE #{ id }"
         coll.trigger "initdone"
 
-      coll.on "change", (model, options) ->
-        # If model is not yet synced there is nothing to update on remotes
-        if not model.synced
-          return
-
-        if options.local
-          return
-
-        sock.send JSON.stringify
-          cmd: "change"
-          room: id
-          model: _.extend(
-            {id: model.id},
-            model.changedAttributes()
-          )
-
-      coll.on "add", (model) ->
-        if not model.id
-          model.set id: uuid()
-
-        if model.synced
-          return
-
-        model.synced = true
-        sock.send JSON.stringify
-          cmd: "add"
-          room: id
-          model: model.toJSON()
 
   syncModel = (id, model) ->
     coll = new Backbone.Collection
-    coll.on "initdone", ->
-
-      if remoteModel = coll.get(model.id)
-        model.set remoteModel.toJSON()
-        remoteModel.on "change", ->
-          model.set remoteModel.toJSON()
-        model.on "change", ->
-          remoteModel.set model.toJSON()
-      else
-        console.log "Creating new NOTES"
-        coll.add model
-
+    coll.add model
     syncCollection(id, coll)
 
   return {

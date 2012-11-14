@@ -45,6 +45,6 @@ define [
       @updateName()
 
     updateName: ->
-      console.log "blue keyup paste"
-      console.log @$('h1').html()
       @model.set( "name", @$('h1').text() )
+      console.log "saving meta model"
+      @model.save()
