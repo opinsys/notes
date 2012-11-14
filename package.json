@@ -28,7 +28,8 @@
     "filed": "",
     "redis": "",
     "request": "",
-    "jsdom": ""
+    "jsdom": "",
+    "requirejs": ""
   },
   "devDependencies": {
     "yalr": ""
