@@ -32,7 +32,7 @@ class Room
 
 class RoomManager
 
-  backend: require("./memory")
+  backend: require("./mongodb")
 
   constructor: ->
     @_rooms = {}
