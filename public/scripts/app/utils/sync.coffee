@@ -41,7 +41,7 @@ define [
           console.log "No changes, Skipping update from save()"
           return
 
-        sock.send m =  JSON.stringify
+        sock.send JSON.stringify
           method: method
           room: id
           attributes: attributes
@@ -97,9 +97,12 @@ define [
         if current = coll.get(attributes.id)
           current.clear(silent: true)
           current.set attributes
+          current._synced = current.toJSON()
           return
 
-        coll.add new coll.model attributes
+        model = new coll.model attributes
+        model._synced = model.toJSON()
+        coll.add model
 
       sockjsEmitter.on "update:#{ id }", (attributes) ->
 
