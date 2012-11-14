@@ -1,14 +1,14 @@
 define [
   "underscore"
-  "puppetview"
+  "backbone.viewmaster"
   "hbs!app/templates/notes-name"
 ], (
   _
-  PuppetView
+  ViewMaster
   template
 ) ->
 
-  class NotesName extends PuppetView
+  class NotesName extends ViewMaster
 
     className: "bb-notes-name"
     template: template

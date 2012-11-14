@@ -3,7 +3,7 @@ define [
   "progress"
 
 
-  "puppetview"
+  "backbone.viewmaster"
   "cs!app/utils/upload"
   "cs!app/models/text-item.model"
   "hbs!app/templates/sendform"
@@ -12,7 +12,7 @@ define [
   Backbone
   Progress
 
-  PuppetView
+  ViewMaster
   upload
   TextItemModel
   template
@@ -34,7 +34,7 @@ define [
     return dfd.promise()
 
 
-  class SendForm extends PuppetView
+  class SendForm extends ViewMaster
 
     className: "bb-send-form"
     template: template

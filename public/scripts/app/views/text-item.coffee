@@ -2,7 +2,7 @@ define [
   "backbone"
   "moment-fi"
 
-  "viewmaster"
+  "backbone.viewmaster"
   "cs!app/views/link-extra"
   "cs!app/views/image-extra"
   "cs!app/models/text-item.model"

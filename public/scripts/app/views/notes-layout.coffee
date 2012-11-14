@@ -1,7 +1,7 @@
 define [
   "underscore"
   "iscroll"
-  "viewmaster"
+  "backbone.viewmaster"
 
   "cs!app/views/send-form"
   "hbs!app/templates/notes-layout"

@@ -1,15 +1,15 @@
 define [
   "backbone"
-  "puppetview"
+  "backbone.viewmaster"
 
   "hbs!app/templates/image-extra"
 ], (
   Backbone
-  PuppetView
+  ViewMaster
 
   template
 ) ->
-  class ImageExtra extends PuppetView
+  class ImageExtra extends ViewMaster
     className: "bb-image-extra"
     template: template
     viewJSON: -> imageURL: @model.getImageURL()

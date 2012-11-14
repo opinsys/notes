@@ -2,16 +2,16 @@ define [
   "backbone"
 
   "cs!app/utils/linkpreview"
-  "puppetview"
+  "backbone.viewmaster"
   "hbs!app/templates/link-extra"
 ], (
   Backbone
 
   linkPreview
-  PuppetView
+  ViewMaster
   template
 ) ->
-  class LinkExtra extends PuppetView
+  class LinkExtra extends ViewMaster
     className: "bb-link-extra"
     template: template
 

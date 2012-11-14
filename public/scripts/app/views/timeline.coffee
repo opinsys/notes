@@ -1,5 +1,5 @@
 define [
-  "viewmaster"
+  "backbone.viewmaster"
   "iscroll"
   "underscore"
 

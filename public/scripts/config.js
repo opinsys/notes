@@ -43,8 +43,7 @@ require.config({
     "coffee-script": "vendor/coffee-script",
     "backbone.sharedcollection": "vendor/backbone.sharedcollection/src/backbone.sharedcollection",
     iscroll: "vendor/iscroll",
-    "viewmaster": "vendor/backbone.viewmaster/backbone.viewmaster",
-    "puppetview": "vendor/backbone.viewmaster/backbone.viewmaster",
+    "backbone.viewmaster": "vendor/backbone.viewmaster/backbone.viewmaster",
     sockjs: "vendor/sockjs",
     progress: "vendor/progress"
   }
