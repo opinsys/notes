@@ -1,8 +1,11 @@
 
 sockjs = require "sockjs"
+_  = require "underscore"
 
 
 class Room
+
+  notImplemented = -> throw new Error "backend does not implement this method"
 
   constructor: ->
     @_members = []
@@ -15,32 +18,32 @@ class Room
     @_members.forEach (member) ->
       fn member if member isnt me
 
-  each: (fn) ->
-    @_items.forEach(fn)
 
   join: (item) ->
     if not @has(item)
       @_members.push item
     item
 
-  add: (item) ->
-    @_items.push item
-
-  update: (attributes) ->
-    for current in @_items
-      if current.id and current.id is attributes.id
-        for k, v of attributes
-          current[k] = v
+  each: notImplemented
+  create: notImplemented
+  update: notImplemented
 
 
 
 class RoomManager
 
+  backend: require("./memory")
+
   constructor: ->
     @_rooms = {}
 
   ensureRoom: (name) ->
-    @_rooms[name] ?= new Room
+    if room = @_rooms[name]
+      return room
+
+    room = @_rooms[name] = new Room
+    _.extend room, @backend(name: name)
+    return room
 
   get: (name) -> @ensureRoom(name)
 
@@ -64,23 +67,36 @@ sync = (server, options) ->
           method: "create"
           attributes: attributes
 
-      conn.write JSON.stringify
-        room: msg.room
-        method: "initdone"
+      , (err) ->
+        if err
+          console.error "Failed to read db entries on join", err
+          return
+
+        conn.write JSON.stringify
+          room: msg.room
+          method: "initdone"
+
 
     create: (conn, msg) ->
       room = rooms.get(msg.room)
-      room.add(msg.attributes)
-      console.log "Sending create", msg
-      room.others conn, (other) ->
-        other.write JSON.stringify msg
+      room.create msg.attributes, (err) ->
+        if err
+          console.error "Failed to create db entry", err
+          return
+
+        room.others conn, (other) ->
+          other.write JSON.stringify msg
 
     update: (conn, msg) ->
       room = rooms.get(msg.room)
-      console.log "Sending update", msg
-      room.others conn, (other) ->
-        other.write JSON.stringify msg
-      room.update(msg.attributes)
+      room.update msg.attributes, (err) ->
+        if err
+          console.error "Failed to update db entry", err
+          return
+
+        console.log "Sending update", msg
+        room.others conn, (other) ->
+          other.write JSON.stringify msg
 
 
   sjsServer.on "connection", (conn) ->

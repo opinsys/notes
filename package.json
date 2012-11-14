@@ -21,6 +21,7 @@
     "sockjs": "",
     "scraper": "",
     "node-uuid": "",
+    "underscore": "",
     "gm": "",
     "async": "",
     "memoize": "",
