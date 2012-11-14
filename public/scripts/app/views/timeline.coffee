@@ -68,6 +68,7 @@ define [
 
     elements:
       "$scrollContainer": ".item-container-wrap"
+      "$itemContainer": ".item-container"
 
     setItemViews: ->
       @collection.sort()
