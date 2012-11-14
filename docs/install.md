@@ -8,7 +8,7 @@ Operating system: Ubuntu 12.04 (Precise Pangolin)
 ```shell
 sudo apt-get update
 sudo apt-get upgrade
-sudo apt-get install build-essential git-core graphicsmagick
+sudo apt-get install build-essential git-core graphicsmagick libssl-dev libreadline-dev
 ```
 
 ### Node
