@@ -21,93 +21,16 @@ make
 sudo make install
 ```
 
+### MongoDB
 
-### Redis
 ```shell
-wget http://redis.googlecode.com/files/redis-2.6.2.tar.gz
-tar zxf redis-2.6.2.tar.gz
-cd redis-2.6.2
-make
-sudo make install
+sudo su -
+apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10
+echo "deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen" > /etc/apt/sources.list.d/10gen.list
+sudo apt-get update
+sudo apt-get install mongodb-10gen
 ```
 
-## Setting up the Redis server
-
-### Create user
-```
-sudo adduser --no-create-home --disabled-password --disabled-login --system redis
-```
-
-### Add configuration file
-```
-sudo mkdir /etc/redis
-```
-
-/etc/redis/redis.conf
-```
-daemonize no
-pidfile /var/run/redis.pid
-port 6379
-timeout 0
-loglevel notice
-logfile stdout
-databases 16
-save 30 1
-stop-writes-on-bgsave-error yes
-rdbcompression yes
-rdbchecksum yes
-dbfilename dump.rdb
-dir /var/lib/redis
-slave-serve-stale-data yes
-slave-read-only yes
-slave-priority 100
-appendonly no
-appendfsync everysec
-no-appendfsync-on-rewrite no
-auto-aof-rewrite-percentage 100
-auto-aof-rewrite-min-size 64mb
-lua-time-limit 5000
-slowlog-log-slower-than 10000
-slowlog-max-len 128
-hash-max-ziplist-entries 512
-hash-max-ziplist-value 64
-list-max-ziplist-entries 512
-list-max-ziplist-value 64
-set-max-intset-entries 512
-zset-max-ziplist-entries 128
-zset-max-ziplist-value 64
-activerehashing yes
-client-output-buffer-limit normal 0 0 0
-client-output-buffer-limit slave 256mb 64mb 60
-client-output-buffer-limit pubsub 32mb 8mb 60
-```
-
-### Change ownership
-
-```
-sudo chown -R redis /etc/redis
-```
-
-### Create data directory
-
-```
-sudo mkdir /var/lib/redis
-sudo chown redis /var/lib/redis
-```
-
-### Add upstart script for the Redis
-
-/etc/init/redis.conf
-```
-description "redis"
-
-start on runlevel [23]
-stop on shutdown
-
-exec sudo -u redis /usr/local/bin/redis-server /etc/redis/redis.conf
-
-respawn
-```
 
 ## Install and configure Notes application
 
