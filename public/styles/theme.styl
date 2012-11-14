@@ -13,13 +13,6 @@ FIXME()
   border-radius 50px
 
 .bb-send-form
-
-  .cancel-image
-    FIXME()
-
-  .error
-    FIXME()
-
   background-color rgba(230,230,220,0.75)
   textarea
     background-color rgba(250,250,250,0.7)
@@ -28,6 +21,24 @@ FIXME()
     font-size 100%
     &:focus
       background-color rgba(255,255,255,0.5)
+  .cancel-image
+    background-color #da4f49
+    border-color rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25)
+    border-style solid
+    border-width 1px
+    border-radius 4px
+    color #fefefe
+    font-size 80%
+    text-decoration none
+    &:hover
+      background-color #bd362f
+  .error
+    background-color error-bg
+    border 1px solid error-border
+    border-radius 4px
+    color error-text
+    font-size 90%
+    text-shadow 0 1px 0 rgba(255, 255, 255, 0.5)
   .button-container
     .auto-scroll
       color dark-red
@@ -65,7 +76,7 @@ FIXME()
 
 .bb-notes-layout
   h1
-    font-size 200%
+    font-size 180%
     color titleColor
 
 .bb-timeline
@@ -139,6 +150,11 @@ input[type="file"]:hover
           font-size 120%
       button
         font-size 100%
+  .bb-notes-layout
+    h1
+      font-size 120%
+
+@media smallScreens
   .bb-notes-layout
     h1
       font-size 120%

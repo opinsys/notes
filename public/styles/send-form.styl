@@ -2,17 +2,14 @@
 
 // Structure
 .bb-send-form
-
-  .progress
-    float right
-
-
   bottom 0
   left 0
   padding 0.25em
   position fixed
   width 100%
   z-index 9999
+  .progress
+    float right
   textarea
     margin 0
     max-height 100px
@@ -51,9 +48,16 @@
       &:hover
         cursor pointer
 
+  .cancel-image
+    margin-top 0.25em
+    padding 0.5em
+  .error
+    display inline-block
+    padding 0.25em
+
   .image-preview
     height 200px
-    padding 2% 0
+    padding 0.5em 0
     img
       max-height 98%
       height auto
