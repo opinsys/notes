@@ -49,6 +49,10 @@ app.configure "development", ->
 
 app.configure ->
 
+  app.use (req, res, next) ->
+   res.locals.production = PRODUCTION
+   next()
+
   app.set('view engine', 'hbs')
   app.use(express.bodyParser({}))
   app.use express.static __dirname + "/public"
