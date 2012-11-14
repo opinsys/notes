@@ -191,6 +191,9 @@ img {
   width: 100%;
   z-index: 9999;
 }
+.bb-send-form .progress {
+  float: right;
+}
 .bb-send-form textarea {
   margin: 0;
   max-height: 100px;

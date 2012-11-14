@@ -1,5 +1,7 @@
 define [
   "backbone"
+  "progress"
+
 
   "puppetview"
   "cs!app/utils/upload"
@@ -8,6 +10,7 @@ define [
   "cs!app/notes"
 ], (
   Backbone
+  Progress
 
   PuppetView
   upload
@@ -46,6 +49,9 @@ define [
       "click .cancel-image": "cancelImage"
       "change .image-select": "handleImage"
 
+    elements:
+      "$progressCanvas": ".progress canvas"
+
     handleImage: (e) ->
       @currentImage =
         file: e.target.files[0]
@@ -60,6 +66,7 @@ define [
       @render()
 
     render: ->
+      @ctx = null
       text = @$("textarea").val()
       super
       @$("textarea").val(text)
@@ -69,12 +76,41 @@ define [
         @$(".image-preview").html @currentImage.el
 
 
+    addProgressIndicator: ->
+      return if @ctx
+      canvas = @$progressCanvas.get(0)
+      @ctx = ctx = canvas.getContext('2d')
+      ratio = window.devicePixelRatio || 1
+      canvas.style.width = canvas.width
+      canvas.style.height = canvas.height
+      canvas.width *= ratio
+      canvas.height *= ratio
+
+      @progress = new Progress()
+      @progress.size 40
+      @updateProgress(0)
+
+    updateProgress: (percentage) ->
+      return if not @progress
+      @progress.text "#{ percentage } %"
+      @progress.update percentage
+      @progress.draw @ctx
+
+
+    upload: (file) ->
+      @addProgressIndicator()
+      up = upload(file)
+
+      up.fail -> alert "failed to post image!"
+
+      up.progress (progress) =>
+        @updateProgress(progress.percentage)
+
+      return up
+
     post: ->
       if @currentImage
-        upload(@currentImage.file).fail(->
-          alert "failed to post image!"
-
-        ).done (res) =>
+        @upload(@currentImage.file).done (res) =>
           @currentImage.imageId = res.imageId
           @sync()
       else
