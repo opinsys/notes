@@ -1,16 +1,24 @@
 @import "colors"
 @import "mediaqueries"
 
-.bb-send-form
-  .cancel-image
-    // These styles might need some styling
-    color orange
-    font-family "Purisa", "comic sans"
-    font-weight bold
-    background-color pink
-    padding 5px
-    border-radius 5px
+// Mixin to add some really ugly styles to make sure elements with this will
+//  get fixed :)
+FIXME()
+  color orange
+  font-family "Comic", "Purisa"
+  font-weight bold
+  background-color pink
+  padding 5px
+  text-shadow  0.1em 0.1em green
+  border-radius 50px
 
+.bb-send-form
+
+  .cancel-image
+    FIXME()
+
+  .error
+    FIXME()
 
   background-color rgba(230,230,220,0.75)
   textarea

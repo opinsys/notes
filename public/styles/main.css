@@ -323,12 +323,23 @@ img {
 }
 .bb-send-form .cancel-image {
   color: #ffa500;
-  font-family: "Purisa", "comic sans";
+  font-family: "Comic", "Purisa";
   font-weight: bold;
   background-color: #ffc0cb;
   padding: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  text-shadow: 0.1em 0.1em #008000;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
+}
+.bb-send-form .error {
+  color: #ffa500;
+  font-family: "Comic", "Purisa";
+  font-weight: bold;
+  background-color: #ffc0cb;
+  padding: 5px;
+  text-shadow: 0.1em 0.1em #008000;
+  -webkit-border-radius: 50px;
+  border-radius: 50px;
 }
 .bb-send-form textarea {
   background-color: rgba(250,250,250,0.7);
