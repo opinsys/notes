@@ -130,7 +130,7 @@ sudo chmod o+w /var/app/notes/upload
 
 ```
 cd /var/app/notes
-npm install
+make
 ```
 
 ### Create upstart script for the Notes application
