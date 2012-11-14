@@ -76,6 +76,5 @@ respawn
 ## Finally start services
 
 ```
-sudo start redis
 sudo start notes
 ```
