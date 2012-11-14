@@ -49,6 +49,13 @@ app.configure ->
   app.use(express.bodyParser({}))
   app.use express.static __dirname + "/public"
 
+  # Workaround iOS 6 POST caching bug
+  # http://stackoverflow.com/questions/12506897/is-safari-on-ios-6-caching-ajax-results
+  app.use (req, res, next) ->
+    if req.method is "POST"
+      res.header "Cache-Control", "no-cache"
+    next()
+
 
 app.get "/", (req, res) ->
   res.render "landing",
