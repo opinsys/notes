@@ -318,6 +318,15 @@ img {
 .bb-send-form {
   background-color: rgba(230,230,220,0.75);
 }
+.bb-send-form .cancel-image {
+  color: #ffa500;
+  font-family: "Purisa", "comic sans";
+  font-weight: bold;
+  background-color: #ffc0cb;
+  padding: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+}
 .bb-send-form textarea {
   background-color: rgba(250,250,250,0.7);
   border: 1px solid #888;

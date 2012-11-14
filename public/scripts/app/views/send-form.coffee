@@ -43,6 +43,7 @@ define [
 
     events:
       "click button": "post"
+      "click .cancel-image": "cancelImage"
       "change .image-select": "handleImage"
 
     handleImage: (e) ->
@@ -53,12 +54,18 @@ define [
         @currentImage.el = img
         @render()
 
+    cancelImage: (e) ->
+      e.preventDefault()
+      @currentImage = null
+      @render()
+
     render: ->
       text = @$("textarea").val()
       super
       @$("textarea").val(text)
       if @currentImage
         @$(".image-preview").html @currentImage.el
+
 
     post: ->
       if @currentImage

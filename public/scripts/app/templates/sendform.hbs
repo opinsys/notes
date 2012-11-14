@@ -1,7 +1,9 @@
 <textarea></textarea>
 {{#if imagePreview}}
+  <a href="#" class="cancel-image" >poista valittu kuva</a>
   <div class="image-preview"></div>
 {{/if}}
+
 <div class="button-container clearfix">
   <span class="fake-file-input" title="Add picture"><i class="icon-picture"></i>
     <input size="2" class="image-select" type="file" value="PIC">
@@ -12,6 +14,7 @@
   {{else}}
     <span class="auto-scroll-open" title="Vie sivu alas niin se rullataan automaattisesti"><i class="icon-lock-open"></i></span>
   {{/if}}
+
   <button>Lähetä</button>
 </div>
 
