@@ -15,6 +15,7 @@ define [
       type: "uploadProgress"
       loaded: e.loaded / 1024
       total: e.totalSize / 1024
+      percentage: Math.round(e.loaded / e.totalSize * 100)
       speed: e.loaded / ((Date.now() - started) / 1000) / 1024
 
    xhr.onreadystatechange = (e) ->
