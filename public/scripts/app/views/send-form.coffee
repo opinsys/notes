@@ -53,10 +53,15 @@ define [
       "$progressCanvas": ".progress canvas"
 
     handleImage: (e) ->
-      @currentImage =
-        file: e.target.files[0]
+      file = e.target.files[0]
 
-      fileToDataURL(@currentImage.file).pipe(dataURLToImage).done (img) =>
+      if not file.type.match /^image\/.+$/
+        @errorMsg = "#{ file.name } ei ole kuva"
+        @render()
+        return
+
+      @currentImage = file: file
+      fileToDataURL(file).pipe(dataURLToImage).done (img) =>
         @currentImage.el = img
         @render()
 
@@ -67,6 +72,7 @@ define [
 
     render: ->
       @ctx = null
+
       text = @$("textarea").val()
       super
       @$("textarea").val(text)
@@ -74,6 +80,8 @@ define [
       Notes.global.set imagePreviewActive: !!@currentImage
       if @currentImage
         @$(".image-preview").html @currentImage.el
+
+      @errorMsg = null
 
 
     addProgressIndicator: ->
@@ -118,6 +126,7 @@ define [
 
 
     viewJSON: -> {
+      errorMsg: @errorMsg
       imagePreview: !!@currentImage
       autoScroll: Notes.global.get "autoScroll"
     }

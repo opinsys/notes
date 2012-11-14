@@ -15,6 +15,9 @@
     <span class="auto-scroll-open" title="Vie sivu alas niin se rullataan automaattisesti"><i class="icon-lock-open"></i></span>
   {{/if}}
 
+  {{#if errorMsg}}
+  <div class=error>{{errorMsg}}</div>
+  {{/if}}
 
   <button>Lähetä</button>
   <div class=progress >
