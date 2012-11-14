@@ -68,7 +68,7 @@ stop on shutdown
 chdir /var/app/notes
 env NODE_ENV=production   
 
-exec sudo -E -u app npm start
+exec sudo -E -u notes npm start
 
 respawn
 ```
