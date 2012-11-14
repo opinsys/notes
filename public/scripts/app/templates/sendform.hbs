@@ -1,6 +1,6 @@
 <textarea></textarea>
 {{#if imagePreview}}
-  <a href="#" class="cancel-image" >poista valittu kuva</a>
+  <a href="#" class="cancel-image"><i class="icon-cancel"></i>Poista valittu kuva</a>
   <div class="image-preview"></div>
 {{/if}}
 
@@ -15,12 +15,12 @@
   {{/if}}
 
   {{#if errorMsg}}
-  <div class=error>{{errorMsg}}</div>
+  <div class=error><i class="icon-attention"></i>{{errorMsg}}</div>
   {{/if}}
 
   <button>Lähetä</button>
-  <div class=progress >
-  <canvas width=40 height=40>
+  <div class="progress">
+    <canvas width="26" height="26">
   </div>
 </div>
 
