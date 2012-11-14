@@ -63,6 +63,8 @@ define [
       text = @$("textarea").val()
       super
       @$("textarea").val(text)
+
+      Notes.global.set imagePreviewActive: !!@currentImage
       if @currentImage
         @$(".image-preview").html @currentImage.el
 

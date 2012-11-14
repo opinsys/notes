@@ -40,6 +40,9 @@ define [
       else
         @addiScroll = ->
 
+      @bindTo Notes.global, "change:imagePreviewActive", @setImagePreviewClass
+      @setImagePreviewClass()
+
       @bindTo @collection, "add", (model) =>
         @setItemViews()
         @renderViews()
@@ -49,6 +52,12 @@ define [
       $(window).on "resize", _.debounce =>
         @scrollToBottom()
       , 200
+
+    setImagePreviewClass: ->
+      if Notes.global.get("imagePreviewActive")
+        @$el.addClass "image-preview-active"
+      else
+        @$el.removeClass "image-preview-active"
 
     getItemView: (model) ->
       if view = @itemViews[model.cid]
