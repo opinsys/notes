@@ -26,7 +26,6 @@ define [
         if method is "create"
           model.set "id", uuid() if not model.id
           _.extend(attributes, model.toJSON())
-          console.log "Creating", model.toJSON()
 
         else if method is "update"
           current = model.toJSON()
@@ -34,7 +33,6 @@ define [
             if not _.isEqual(model._synced[k], current[k])
               attributes[k] = current[k]
           attributes.id = model.id
-          console.log "Updating", current, "with", attributes
 
         else
           throw new Error "unknown method #{ method }"
@@ -47,7 +45,6 @@ define [
           method: method
           room: id
           attributes: attributes
-        console.log "send", m
         model._synced = model.toJSON()
         options.success?()
       }
@@ -74,7 +71,6 @@ define [
     if not msg.method
       return console.error "method missing from", msg
 
-    console.log "Got", msg
     sockjsEmitter.trigger(
       (msg.method + ":" + msg.room),
       msg.attributes
@@ -97,10 +93,8 @@ define [
         room: id
 
       sockjsEmitter.on "create:#{ id }", (attributes) ->
-        console.log "got create event", attributes
 
         if current = coll.get(attributes.id)
-          console.log "populating existing model with create", attributes
           current.clear(silent: true)
           current.set attributes
           return
@@ -115,7 +109,6 @@ define [
           console.warn "Cannot update model. id not found:", attributes
 
       sockjsEmitter.on "#{ id }:initdone", ->
-        console.log "INIT DONE #{ id }"
         coll.trigger "initdone"
 
 
