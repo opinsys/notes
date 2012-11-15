@@ -1,0 +1,16 @@
+.bb-send-form,
+.print-button {
+  display: none;
+}
+.bb-timeline .item-container-wrap {
+  position: static;
+}
+.bb-timeline .item-container-wrap {
+  box-shadow: none;
+}
+.bb-text-item .created {
+  display: none;
+}
+* {
+  background: none !important;
+}
