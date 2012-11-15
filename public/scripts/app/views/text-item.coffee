@@ -60,6 +60,10 @@ define [
     context: ->
       json = @model.toJSON()
       json.text = replaceURLWithHTMLLinks s.escapeHTML json.text
-      json.createdHuman = moment.unix(@model.get("created") / 1000).fromNow()
+      json.text = json.text.replace("\n", "<br>")
+      json.createdHuman = moment.unix(
+        @model.get("created") / 1000
+      ).fromNow()
+
       return json
 
