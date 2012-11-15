@@ -25,7 +25,7 @@ define [
         console.log "linkpreview failed", err
         @remove()
 
-    viewJSON: ->
+    context: ->
       if @linkPreview.imageId
         @linkPreview.imageURL = "/image/#{ @linkPreview.imageId }.jpg"
       return @linkPreview

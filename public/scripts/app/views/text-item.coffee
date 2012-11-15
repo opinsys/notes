@@ -55,7 +55,7 @@ define [
       super
       @highlight() if not Notes.global.get("loading")
 
-    viewJSON: ->
+    context: ->
       json = @model.toJSON()
       json.text = replaceURLWithHTMLLinks(json.text)
       json.createdHuman = moment.unix(@model.get("created") / 1000).fromNow()

@@ -12,4 +12,4 @@ define [
   class ImageExtra extends ViewMaster
     className: "bb-image-extra"
     template: template
-    viewJSON: -> imageURL: @model.getImageURL()
+    context: -> imageURL: @model.getImageURL()

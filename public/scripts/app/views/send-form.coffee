@@ -125,7 +125,7 @@ define [
         @sync() if @$("textarea").val() != ""
 
 
-    viewJSON: -> {
+    context: -> {
       errorMsg: @errorMsg
       imagePreview: !!@currentImage
       autoScroll: Notes.global.get "autoScroll"
