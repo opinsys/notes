@@ -29,6 +29,7 @@ define [
       'keyup h1': "updateName"
       'paste h1': "updateName"
       'keydown h1': "disableEnter"
+      'click .print-button': -> window.print()
 
     disableEnter: (e) ->
       if e.which in [13, 27]
