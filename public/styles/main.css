@@ -188,6 +188,15 @@ img {
   min-width: 80px;
   width: 90%;
 }
+.bb-notes-name .print-button,
+.bb-notes-name h1 {
+  display: inline;
+}
+.bb-notes-name .print-button {
+  cursor: pointer;
+  font-size: 20pt;
+  margin: 1em;
+}
 .bb-timeline .item-container-wrap {
   bottom: 85px;
   left: 0;
@@ -543,6 +552,12 @@ img {
 }
 input[type="file"]:hover {
   cursor: pointer;
+}
+.bb-notes-name .print-button {
+  color: #ed7113;
+}
+.bb-notes-name .print-button:hover {
+  color: #fc8022;
 }
 @media screen and (max-device-width:1200px) and (orientation: landscape) {
   .bb-send-form {
