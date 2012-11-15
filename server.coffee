@@ -3,11 +3,13 @@ http = require('http')
 express = require "express"
 stylus = require "stylus"
 nib = require "nib"
+
 sync = require "./lib/backbonesock"
 
 app = express()
 server = require('http').createServer(app)
 
+require("clim")(console, true)
 
 PRODUCTION = null
 app.configure "development", -> PRODUCTION = false

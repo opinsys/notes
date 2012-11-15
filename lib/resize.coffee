@@ -38,7 +38,7 @@ module.exports = (sourceImagePath, formats, targetDir, done) ->
       opts.suffix ?= ""
       target = newFilePath + opts.suffix + ".jpg"
       downScaled = downScale(size, opts.max)
-      console.log "Writing image to", target
+      console.log "Writing image to", target, downScaled
       gm(sourceImagePath).resize(
         downScaled.width
         downScaled.height
