@@ -2,6 +2,7 @@ define [
   "backbone"
   "backbone.viewmaster"
   "moment-fi"
+  "underscore.string"
 
   "cs!app/notes"
   "cs!app/views/link-extra"
@@ -12,6 +13,7 @@ define [
   Backbone
   ViewMaster
   moment
+  s
 
   Notes
   LinkExtra
@@ -57,7 +59,7 @@ define [
 
     context: ->
       json = @model.toJSON()
-      json.text = replaceURLWithHTMLLinks(json.text)
+      json.text = replaceURLWithHTMLLinks s.escapeHTML json.text
       json.createdHuman = moment.unix(@model.get("created") / 1000).fromNow()
       return json
 
