@@ -4,6 +4,7 @@ define [
   "uri"
   "cs!backbone.sharedcollection"
 
+  "cs!app/notes"
   "cs!app/views/notes-layout"
   "cs!app/models/timeline.collection"
   "cs!app/utils/sync"
@@ -14,6 +15,7 @@ define [
   uri
   SharedCollection
 
+  Notes
   NotesLayout
   TimelineCollection
   sync
@@ -21,6 +23,7 @@ define [
 )-> -> $ ->
 
 
+  Notes.global.set "loading", "models"
   $(".loading").remove()
 
   url = uri.parse(window.location.href)
@@ -29,6 +32,8 @@ define [
     throw new Error "Bad url"
 
   window.timeline = new TimelineCollection
+  timeline.on "initdone", ->
+    Notes.global.set "loading", null
 
   metaModel = new Backbone.Model
     name: "Muistio"

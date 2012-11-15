@@ -1,17 +1,19 @@
 define [
   "backbone"
+  "backbone.viewmaster"
   "moment-fi"
 
-  "backbone.viewmaster"
+  "cs!app/notes"
   "cs!app/views/link-extra"
   "cs!app/views/image-extra"
   "cs!app/models/text-item.model"
   "hbs!app/templates/text-item"
 ], (
   Backbone
+  ViewMaster
   moment
 
-  ViewMaster
+  Notes
   LinkExtra
   ImageExtra
   TextItemModel
@@ -43,12 +45,15 @@ define [
 
       @setViews ".extras", extras
 
-    render: ->
-      super
+    highlight: ->
       @$el.css "animation", "highlight 1s"
       setTimeout =>
         @$el.css "animation", ""
       , 1000
+
+    render: ->
+      super
+      @highlight() if not Notes.global.get("loading")
 
     viewJSON: ->
       json = @model.toJSON()
