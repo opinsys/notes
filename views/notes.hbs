@@ -4,7 +4,11 @@ window.startNotes = true;
 
 <div class="loading">
   <div id="loading-spinner"></div>
-  <h1>Ladataan...</h1>
+  <h1>Ladataan...
+  {{#unless production}}
+  <span class="development">(kehitystila)</small>
+  {{/unless}}
+  </h1>
 </div>
 
 {{! Load now to display spinner while the application loads }}
