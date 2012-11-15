@@ -19,4 +19,8 @@ define [
 
     hasImage: -> !!@get("imageId")
 
-    getImageURL: -> "/image/#{ @get("imageId") }.jpg"
+    getImageURL: (size="") ->
+      if size
+        size = "_" + size
+      return "/image/#{ @get("imageId") }#{ size }.jpg"
+

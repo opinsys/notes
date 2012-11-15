@@ -17,7 +17,9 @@ define [
     elements:
       $images: "img"
 
-    context: -> imageURL: @model.getImageURL()
+    context: ->
+      imageURL: @model.getImageURL()
+      fullImageURL: @model.getImageURL("full")
 
     render: ->
       super
