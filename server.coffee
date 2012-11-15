@@ -71,7 +71,10 @@ app.get "/", (req, res) ->
 app.post "/", (req, res) -> res.redirect "/notes/" + req.body.name
 app.post "/linkpreview", require "./routes/linkpreview"
 
-app.get "/notes/*", (req, res) ->
+app.get "/notes/", (req, res) ->
+  res.redirect "/"
+
+app.get "/notes/:id", (req, res) ->
   res.render "notes"
 
 app.post "/image", imageRoute.post
