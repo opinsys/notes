@@ -575,3 +575,48 @@ input[type="file"]:hover {
     font-size: 120%;
   }
 }
+@-moz-keyframes highlight {
+  0% {
+    background: #ed7113;
+  }
+
+  100% {
+    background: none;
+  }
+}
+@-webkit-keyframes highlight {
+  0% {
+    background: #ed7113;
+  }
+
+  100% {
+    background: none;
+  }
+}
+@-o-keyframes highlight {
+  0% {
+    background: #ed7113;
+  }
+
+  100% {
+    background: none;
+  }
+}
+@-ms-keyframes highlight {
+  0% {
+    background: #ed7113;
+  }
+
+  100% {
+    background: none;
+  }
+}
+@keyframes highlight {
+  0% {
+    background: #ed7113;
+  }
+
+  100% {
+    background: none;
+  }
+}

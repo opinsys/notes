@@ -43,6 +43,13 @@ define [
 
       @setViews ".extras", extras
 
+    render: ->
+      super
+      @$el.css "animation", "highlight 1s"
+      setTimeout =>
+        @$el.css "animation", ""
+      , 1000
+
     viewJSON: ->
       json = @model.toJSON()
       json.text = replaceURLWithHTMLLinks(json.text)
