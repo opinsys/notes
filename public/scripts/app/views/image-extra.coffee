@@ -11,5 +11,15 @@ define [
 ) ->
   class ImageExtra extends ViewMaster
     className: "bb-image-extra"
+
     template: template
+
+    elements:
+      $images: "img"
+
     context: -> imageURL: @model.getImageURL()
+
+    render: ->
+      super
+      @$images.on "load", (e) =>
+        @trigger "imageloaded", e.target

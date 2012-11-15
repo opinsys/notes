@@ -33,8 +33,13 @@ define [
 
       @itemViews = {}
 
+
       @scrollToBottom = _.debounce @scrollToBottom, 100
       @refreshiScroll = _.debounce @refreshiScroll, 100
+
+      @on "imageloaded", (view, arg) =>
+        @refreshiScroll()
+
       if Modernizr.touch
         @addiScroll = _.debounce @addiScroll, 100
       else
