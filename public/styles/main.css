@@ -179,6 +179,15 @@ img {
     width: 100%;
   }
 }
+@media screen and (max-width: 600px) {
+  .bb-notes-layout {
+    padding-top: 0.6em;
+  }
+  .bb-notes-layout header {
+    padding: 0;
+    height: 38px;
+  }
+}
 .bb-timeline .item-container-wrap {
   bottom: 85px;
   left: 0;
@@ -213,6 +222,11 @@ img {
   }
   .bb-timeline.image-preview-active .item-container-wrap {
     bottom: 335px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .bb-timeline .item-container-wrap {
+    top: 38px;
   }
 }
 .bb-send-form {
