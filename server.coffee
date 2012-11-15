@@ -36,6 +36,10 @@ app.configure "development", ->
    res.locals.yalrConfig = yalrConfig
    next()
 
+  # Disable cache always in development
+  app.use (req, res, next) ->
+    res.header "Cache-Control", "no-cache"
+    next()
 
   compile = (str, path) ->
     stylus(str)
