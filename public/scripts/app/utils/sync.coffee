@@ -111,7 +111,7 @@ define [
         else
           console.warn "Cannot update model. id not found:", attributes
 
-      sockjsEmitter.on "#{ id }:initdone", ->
+      sockjsEmitter.on "initdone:#{ id }", ->
         coll.trigger "initdone"
 
 
