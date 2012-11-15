@@ -452,6 +452,7 @@ img {
   filter: alpha(opacity=0);
 }
 .bb-send-form .button-container button {
+  padding-bottom: 25px;
   background-color: #b0c730;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #b0c730), color-stop(1, #b0c730));
   background-image: -webkit-linear-gradient(top, #b0c730 0%, #b0c730 100%);
