@@ -139,22 +139,6 @@ img {
   padding: 0;
   position: relative;
 }
-.bb-notes-layout header .bb-notes-name .title-wrap {
-  float: left;
-  width: 78%;
-}
-.bb-notes-layout header .bb-notes-name .title-wrap h1 {
-  line-height: 1;
-}
-.bb-notes-layout header .bb-notes-name .opinsys-labs-wrap {
-  float: right;
-  width: 20%;
-}
-.bb-notes-layout header .bb-notes-name .opinsys-labs-wrap img {
-  max-width: 200px;
-  min-width: 80px;
-  width: 90%;
-}
 @media screen and (max-device-width:1200px) and (orientation: landscape) {
   .bb-notes-layout header {
     padding: 0 1em;
@@ -187,6 +171,22 @@ img {
     padding: 0;
     height: 38px;
   }
+}
+.bb-notes-name .title-wrap {
+  float: left;
+  width: 78%;
+}
+.bb-notes-name .title-wrap h1 {
+  line-height: 1;
+}
+.bb-notes-name .opinsys-labs-wrap {
+  float: right;
+  width: 20%;
+}
+.bb-notes-name .opinsys-labs-wrap img {
+  max-width: 200px;
+  min-width: 80px;
+  width: 90%;
 }
 .bb-timeline .item-container-wrap {
   bottom: 85px;
