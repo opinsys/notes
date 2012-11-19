@@ -13,10 +13,6 @@ require.config({
     sockjs: {
       exports: "SockJS"
     },
-    "backbone.io": {
-      deps: ["backbone", "socket.io"],
-      exports: "Backbone.io"
-    },
     "uri": {
       exports: "URI"
     },
