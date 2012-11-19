@@ -2,7 +2,6 @@ define [
   "jquery"
   "backbone"
   "uri"
-  "cs!backbone.sharedcollection"
 
   "cs!app/notes"
   "cs!app/views/notes-layout"
@@ -13,7 +12,6 @@ define [
   $
   Backbone
   uri
-  SharedCollection
 
   Notes
   NotesLayout

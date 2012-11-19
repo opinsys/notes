@@ -3,14 +3,12 @@ define [
   "underscore"
   "backbone"
   "sockjs"
-  "cs!backbone.sharedcollection"
   "cs!app/utils/unwraperr"
 ], (
   $
   _
   Backbone
   SockJS
-  SharedCollection
   unwraperr
 ) ->
 
